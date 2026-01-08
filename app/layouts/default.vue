@@ -25,5 +25,7 @@ const showSidebar = computed(() => {
         </div>
       </main>
     </div>
+
+    <Footer />
   </div>
 </template>
