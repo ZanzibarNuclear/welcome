@@ -2,7 +2,7 @@
 const colorMode = useColorMode()
 
 const toggleColorMode = () => {
-  colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 </script>
 
@@ -18,16 +18,12 @@ const toggleColorMode = () => {
 
       <!-- Top-level Navigation -->
       <nav class="flex items-center gap-4">
-        <NuxtLink
-          to="/"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
-        >
+        <NuxtLink to="/"
+          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
           Home
         </NuxtLink>
-        <NuxtLink
-          to="/about"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
-        >
+        <NuxtLink to="/about"
+          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
           About
         </NuxtLink>
       </nav>
@@ -35,20 +31,11 @@ const toggleColorMode = () => {
       <!-- Right side actions -->
       <div class="flex items-center gap-2">
         <!-- Color Mode Toggle -->
-        <UButton
-          :icon="colorMode.preference === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'"
-          color="neutral"
-          variant="ghost"
-          @click="toggleColorMode"
-          :aria-label="`Switch to ${colorMode.preference === 'dark' ? 'light' : 'dark'} mode`"
-        />
+        <UButton :icon="colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'" color="neutral"
+          variant="ghost" @click="toggleColorMode"
+          :aria-label="`Switch to ${colorMode.value === 'dark' ? 'light' : 'dark'} mode`" />
         <!-- Account Icon -->
-        <UButton
-          icon="i-heroicons-user-circle"
-          color="primary"
-          variant="ghost"
-          aria-label="Account"
-        />
+        <UButton icon="i-heroicons-user-circle" color="primary" variant="ghost" aria-label="Account" />
       </div>
     </div>
   </header>
