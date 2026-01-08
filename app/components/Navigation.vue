@@ -1,24 +1,30 @@
 <template>
-  <nav class="p-4 space-y-2">
+  <nav class="p-6 space-y-1">
+    <h3 class="px-3 mb-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+      Navigation
+    </h3>
     <NuxtLink
       to="/"
-      class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-      active-class="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
+      class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      active-class="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-semibold"
     >
+      <span class="w-1.5 h-1.5 rounded-full bg-current mr-3 opacity-50"></span>
       Home
     </NuxtLink>
     <NuxtLink
       to="/docs"
-      class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-      active-class="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
+      class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      active-class="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-semibold"
     >
+      <span class="w-1.5 h-1.5 rounded-full bg-current mr-3 opacity-50"></span>
       Documentation
     </NuxtLink>
     <NuxtLink
       to="/guides"
-      class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-      active-class="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
+      class="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      active-class="bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-semibold"
     >
+      <span class="w-1.5 h-1.5 rounded-full bg-current mr-3 opacity-50"></span>
       Guides
     </NuxtLink>
   </nav>
