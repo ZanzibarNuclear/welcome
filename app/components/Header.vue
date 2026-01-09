@@ -13,7 +13,7 @@ const toggleColorMode = () => {
       <!-- Logo -->
       <div class="flex items-center">
         <NuxtLink to="/"
-          class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 dark:from-primary-400 dark:to-primary-300 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+          class="text-xl font-bold bg-linear-to-r from-primary-600 to-primary-500 dark:from-primary-400 dark:to-primary-300 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
           Atomic Ambitions
         </NuxtLink>
       </div>
@@ -33,7 +33,7 @@ const toggleColorMode = () => {
       <!-- Right side actions -->
       <div class="flex items-center gap-2">
         <!-- Color Mode Toggle -->
-        <UButton :icon="colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'" color="gray"
+        <UButton :icon="colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'" color="neutral"
           variant="ghost" @click="toggleColorMode"
           :aria-label="`Switch to ${colorMode.value === 'dark' ? 'light' : 'dark'} mode`" />
         <!-- Account Icon -->

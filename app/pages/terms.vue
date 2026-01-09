@@ -1,0 +1,9 @@
+<script setup lang="ts">
+const { data: page } = await useAsyncData('terms', () => {
+  return queryCollection('content').path('/terms').first()
+})
+</script>
+
+<template>
+  <ContentRenderer v-if="page" :value="page" />
+</template>
