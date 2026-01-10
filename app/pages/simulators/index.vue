@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Fetch all simulators
-const { data: simulators } = await useAsyncData('simulators', () => {
-  return queryCollection('content').where('type', 'simulator').all()
+const { data: simulators } = await useAsyncData('simulators', async () => {
+  const items = await queryCollection('content').path('/simulators').all()
+  return items.filter((item: any) => item.type === 'simulator')
 })
 
 // Fetch the index page content
@@ -34,9 +35,9 @@ const simulatorsByDifficulty = computed(() => {
       <section v-if="simulatorsByDifficulty.beginner.length > 0">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Beginner Friendly</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article v-for="sim in simulatorsByDifficulty.beginner" :key="sim._path"
+          <article v-for="sim in simulatorsByDifficulty.beginner" :key="(sim as any).path"
             class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg">
-            <NuxtLink :to="sim._path" class="block p-6">
+            <NuxtLink :to="(sim as any).path" class="block p-6">
               <div class="flex items-start justify-between mb-3">
                 <span
                   class="text-xs px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
@@ -68,9 +69,9 @@ const simulatorsByDifficulty = computed(() => {
       <section v-if="simulatorsByDifficulty.intermediate.length > 0">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Intermediate</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article v-for="sim in simulatorsByDifficulty.intermediate" :key="sim._path"
+          <article v-for="sim in simulatorsByDifficulty.intermediate" :key="(sim as any).path"
             class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg">
-            <NuxtLink :to="sim._path" class="block p-6">
+            <NuxtLink :to="(sim as any).path" class="block p-6">
               <div class="flex items-start justify-between mb-3">
                 <span
                   class="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
@@ -102,7 +103,7 @@ const simulatorsByDifficulty = computed(() => {
       <section v-if="simulatorsByDifficulty.advanced.length > 0">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Advanced</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article v-for="sim in simulatorsByDifficulty.advanced" :key="sim._path"
+          <article v-for="sim in simulatorsByDifficulty.advanced" :key="(sim as any).path"
             class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg">
             <NuxtLink :to="sim._path" class="block p-6">
               <div class="flex items-start justify-between mb-3">

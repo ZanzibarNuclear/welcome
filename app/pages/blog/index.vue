@@ -1,7 +1,10 @@
 <script setup lang="ts">
 // Fetch all blog posts
-const { data: posts } = await useAsyncData('blog-posts', () => {
-  return queryCollection('content').where('type', 'blog').sort({ date: -1 }).all()
+const { data: posts } = await useAsyncData('blog-posts', async () => {
+  const items = await queryCollection('content').path('/blog').all()
+  return items
+    .filter((item: any) => item.type === 'blog')
+    .sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
 })
 
 // Fetch the index page content
@@ -19,9 +22,9 @@ const { data: indexPage } = await useAsyncData('blog-index', () => {
 
     <!-- Blog Posts Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <article v-for="post in posts" :key="post._path"
+      <article v-for="post in posts" :key="(post as any).path"
         class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-primary-500 dark:hover:border-primary-500 transition-all hover:shadow-lg">
-        <NuxtLink :to="post._path" class="block">
+        <NuxtLink :to="(post as any).path" class="block">
           <div class="p-6">
             <!-- Meta Info -->
             <div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-3">

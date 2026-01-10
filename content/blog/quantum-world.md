@@ -26,6 +26,7 @@ Two particles can become "entangled," instantly affecting each other regardless 
 ## Why It Matters
 
 Quantum mechanics isn't just theoretical—it powers:
+
 - Transistors in your computer
 - Lasers
 - MRI machines

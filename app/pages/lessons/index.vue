@@ -1,7 +1,10 @@
 <script setup lang="ts">
 // Fetch all lessons
-const { data: lessons } = await useAsyncData('lessons', () => {
-  return queryCollection('content').where('type', 'lesson').sort({ order: 1 }).all()
+const { data: lessons } = await useAsyncData('lessons', async () => {
+  const items = await queryCollection('content').path('/lessons').all()
+  return items
+    .filter((item: any) => item.type === 'lesson')
+    .sort((a: any, b: any) => (a.order || 999) - (b.order || 999))
 })
 
 // Fetch the index page content
@@ -34,9 +37,9 @@ const lessonsBySeries = computed(() => {
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">{{ seriesName }}</h2>
         
         <div class="space-y-4">
-          <article v-for="lesson in seriesLessons" :key="lesson._path"
+          <article v-for="lesson in seriesLessons" :key="(lesson as any).path"
             class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-primary-500 dark:hover:border-primary-500 transition-all">
-            <NuxtLink :to="lesson._path" class="block p-6">
+            <NuxtLink :to="(lesson as any).path" class="block p-6">
               <div class="flex items-start justify-between gap-4">
                 <div class="flex-1">
                   <!-- Order Badge -->

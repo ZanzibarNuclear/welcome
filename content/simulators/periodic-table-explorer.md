@@ -22,7 +22,9 @@ Explore all 118 elements with our interactive periodic table. Click any element 
 ## What You Can Explore
 
 ### Element Details
+
 For each element, view:
+
 - Atomic number and mass
 - Electron configuration
 - Group and period
@@ -30,6 +32,7 @@ For each element, view:
 - Common uses and applications
 
 ### Trends and Patterns
+
 - Compare elements across groups
 - Observe periodic trends
 - Understand element families

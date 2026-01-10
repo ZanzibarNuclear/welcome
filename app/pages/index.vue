@@ -1,15 +1,23 @@
 <script setup lang="ts">
-// Fetch featured content
-const { data: featuredBlog } = await useAsyncData('featured-blog', () => {
-  return queryCollection('content').where('type', 'blog').where('featured', true).first()
+// Fetch featured content using queryCollection
+const { data: featuredBlog } = await useAsyncData('featured-blog', async () => {
+  const items = await queryCollection('content').path('/blog').all()
+  return items.find((item: any) => item.featured === true)
 })
 
-const { data: recentBlog } = await useAsyncData('recent-blog', () => {
-  return queryCollection('content').where('type', 'blog').sort({ date: -1 }).limit(3).all()
+const { data: recentBlog } = await useAsyncData('recent-blog', async () => {
+  const items = await queryCollection('content').path('/blog').all()
+  return items
+    .filter((item: any) => item.type === 'blog')
+    .sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+    .slice(0, 3)
 })
 
-const { data: featuredSimulators } = await useAsyncData('featured-simulators', () => {
-  return queryCollection('content').where('type', 'simulator').where('featured', true).limit(3).all()
+const { data: featuredSimulators } = await useAsyncData('featured-simulators', async () => {
+  const items = await queryCollection('content').path('/simulators').all()
+  return items
+    .filter((item: any) => item.featured === true)
+    .slice(0, 3)
 })
 </script>
 
@@ -45,14 +53,14 @@ const { data: featuredSimulators } = await useAsyncData('featured-simulators', (
       <div class="max-w-6xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Featured Simulators</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <NuxtLink v-for="sim in featuredSimulators" :key="sim._path" :to="sim._path"
+          <NuxtLink v-for="sim in featuredSimulators" :key="(sim as any).path" :to="(sim as any).path"
             class="block p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-primary-500 dark:hover:border-primary-500 transition-colors">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ sim.title }}</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">{{ sim.description }}</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ (sim as any).title }}</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">{{ (sim as any).description }}</p>
             <div class="flex items-center gap-2">
               <span
                 class="text-xs px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
-                {{ sim.difficulty }}
+                {{ (sim as any).difficulty }}
               </span>
             </div>
           </NuxtLink>
@@ -70,11 +78,11 @@ const { data: featuredSimulators } = await useAsyncData('featured-simulators', (
           </UButton>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
-          <NuxtLink v-for="post in recentBlog" :key="post._path" :to="post._path"
+          <NuxtLink v-for="post in recentBlog" :key="(post as any).path" :to="(post as any).path"
             class="block p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-primary-500 dark:hover:border-primary-500 transition-colors">
-            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">{{ post.date }}</div>
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ post.title }}</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm">{{ post.excerpt }}</p>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">{{ (post as any).date }}</div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ (post as any).title }}</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">{{ (post as any).excerpt }}</p>
           </NuxtLink>
         </div>
       </div>
@@ -87,7 +95,7 @@ const { data: featuredSimulators } = await useAsyncData('featured-simulators', (
         <p class="text-xl text-primary-100 mb-8">
           Begin your journey into atomic physics with our structured lesson paths.
         </p>
-        <UButton to="/lessons" size="lg" color="white" variant="solid">
+        <UButton to="/lessons" size="lg" color="neutral" variant="solid">
           Browse Lessons
         </UButton>
       </div>

@@ -6,7 +6,7 @@ const neutrons = ref(0)
 const electrons = ref(0)
 
 const elements = [
-  'None', 'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon', 
+  'None', 'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon',
   'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium', 'Aluminum',
   'Silicon', 'Phosphorus', 'Sulfur', 'Chlorine', 'Argon', 'Potassium', 'Calcium'
 ]
@@ -48,25 +48,26 @@ const reset = () => {
     </div>
 
     <!-- Visual Representation -->
-    <div class="flex justify-center items-center min-h-[300px] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg p-8">
+    <div
+      class="flex justify-center items-center min-h-[300px] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg p-8">
       <div class="relative">
         <!-- Nucleus -->
-        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
+        <div
+          class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
           <div class="text-white text-center">
             <div class="text-xs font-semibold">Nucleus</div>
             <div class="text-2xl font-bold">{{ protons + neutrons }}</div>
           </div>
         </div>
-        
+
         <!-- Electron shells (simplified) -->
         <div v-if="electrons > 0" class="absolute inset-0 -m-8">
-          <div class="w-48 h-48 rounded-full border-2 border-dashed border-primary-300 dark:border-primary-600 animate-spin-slow">
-            <div v-for="i in Math.min(electrons, 8)" :key="i" 
-              class="absolute w-3 h-3 bg-blue-500 rounded-full"
-              :style="{ 
-                top: `${50 + 45 * Math.sin(i * Math.PI / 4)}%`, 
-                left: `${50 + 45 * Math.cos(i * Math.PI / 4)}%` 
-              }">
+          <div
+            class="w-48 h-48 rounded-full border-2 border-dashed border-primary-300 dark:border-primary-600 animate-spin-slow">
+            <div v-for="i in Math.min(electrons, 8)" :key="i" class="absolute w-3 h-3 bg-blue-500 rounded-full" :style="{
+              top: `${50 + 45 * Math.sin(i * Math.PI / 4)}%`,
+              left: `${50 + 45 * Math.cos(i * Math.PI / 4)}%`
+            }">
             </div>
           </div>
         </div>
@@ -82,7 +83,8 @@ const reset = () => {
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ protons }}</div>
         </div>
         <div class="flex gap-2">
-          <UButton @click="removeProton" :disabled="protons === 0" color="neutral" variant="outline" class="flex-1">-</UButton>
+          <UButton @click="removeProton" :disabled="protons === 0" color="neutral" variant="outline" class="flex-1">-
+          </UButton>
           <UButton @click="addProton" color="primary" class="flex-1">+</UButton>
         </div>
       </div>
@@ -94,7 +96,8 @@ const reset = () => {
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ neutrons }}</div>
         </div>
         <div class="flex gap-2">
-          <UButton @click="removeNeutron" :disabled="neutrons === 0" color="neutral" variant="outline" class="flex-1">-</UButton>
+          <UButton @click="removeNeutron" :disabled="neutrons === 0" color="neutral" variant="outline" class="flex-1">-
+          </UButton>
           <UButton @click="addNeutron" color="primary" class="flex-1">+</UButton>
         </div>
       </div>
@@ -106,7 +109,8 @@ const reset = () => {
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ electrons }}</div>
         </div>
         <div class="flex gap-2">
-          <UButton @click="removeElectron" :disabled="electrons === 0" color="neutral" variant="outline" class="flex-1">-</UButton>
+          <UButton @click="removeElectron" :disabled="electrons === 0" color="neutral" variant="outline" class="flex-1">
+            -</UButton>
           <UButton @click="addElectron" color="primary" class="flex-1">+</UButton>
         </div>
       </div>
@@ -121,8 +125,13 @@ const reset = () => {
 
 <style scoped>
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-spin-slow {
