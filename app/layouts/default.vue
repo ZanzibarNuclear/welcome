@@ -1,8 +1,15 @@
 <script setup lang="ts">
 const route = useRoute()
+
+// Show sidebar only on specific content pages (blog posts, lessons, simulators detail pages)
 const showSidebar = computed(() => {
-  // Check if page has hideSidebar meta
-  return !route.meta.hideSidebar
+  const path = route.path
+  // Show sidebar on detail pages (with slugs) but not on list/index pages
+  return (
+    (path.startsWith('/blog/') && path !== '/blog' && path !== '/blog/') ||
+    (path.startsWith('/lessons/') && path !== '/lessons' && path !== '/lessons/') ||
+    (path.startsWith('/simulators/') && path !== '/simulators' && path !== '/simulators/')
+  )
 })
 </script>
 

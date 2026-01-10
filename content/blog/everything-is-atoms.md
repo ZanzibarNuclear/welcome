@@ -1,6 +1,11 @@
 ---
-title: Welcome
-description: Welcome to our site
+type: blog
+title: "Everything is Atoms"
+date: 2026-01-08
+author: "Atomic Ambitions Team"
+tags: [atoms, fundamentals, introduction]
+excerpt: "The entire universe is made of atoms. Explore what makes atoms the building blocks of everything we know."
+featured: true
 ---
 
 # Everything is Atoms
@@ -35,4 +40,4 @@ Can you pour yourself a glass of free-floating quarks? Nope. How about a nice le
 
 ---
 
-_Welcome to Atomic Ambitions—where we explore the fundamental building blocks of our universe._
+_This is just the beginning of understanding the atomic world._

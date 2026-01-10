@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('privacy', () => {
-  return queryCollection('content').path('/privacy').first()
+  return queryCollection('content').path('/pages/privacy').first()
 })
 </script>
 

@@ -24,6 +24,18 @@ const toggleColorMode = () => {
           class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
           Home
         </NuxtLink>
+        <NuxtLink to="/blog"
+          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          Blog
+        </NuxtLink>
+        <NuxtLink to="/lessons"
+          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          Lessons
+        </NuxtLink>
+        <NuxtLink to="/simulators"
+          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          Simulators
+        </NuxtLink>
         <NuxtLink to="/about"
           class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
           About
