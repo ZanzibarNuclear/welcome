@@ -6,8 +6,7 @@ const showSidebar = computed(() => {
   const path = route.path
   // Show sidebar on detail pages (with slugs) but not on list/index pages
   return (
-    (path.startsWith('/blog/') && path !== '/blog' && path !== '/blog/') ||
-    (path.startsWith('/lessons/') && path !== '/lessons' && path !== '/lessons/') ||
+    (path.startsWith('/isotopes/') && path !== '/isotopes' && path !== '/isotopes/') ||
     (path.startsWith('/simulators/') && path !== '/simulators' && path !== '/simulators/')
   )
 })

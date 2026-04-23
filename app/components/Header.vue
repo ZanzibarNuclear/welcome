@@ -12,9 +12,8 @@ const toggleColorMode = () => {
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
       <!-- Logo -->
       <div class="flex items-center">
-        <NuxtLink to="/"
-          class="text-xl font-bold bg-linear-to-r from-primary-600 to-primary-500 dark:from-primary-400 dark:to-primary-300 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-          Atomic Ambitions
+        <NuxtLink to="/" class="hover:opacity-80 transition-opacity">
+          <img src="/images/atomic-ambitions-logo.png" alt="Atomic Ambitions" class="h-9 w-auto" />
         </NuxtLink>
       </div>
 
@@ -24,21 +23,13 @@ const toggleColorMode = () => {
           class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
           Home
         </NuxtLink>
-        <NuxtLink to="/blog"
+        <NuxtLink to="/isotopes"
           class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          Blog
-        </NuxtLink>
-        <NuxtLink to="/lessons"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          Lessons
+          Isotopes
         </NuxtLink>
         <NuxtLink to="/simulators"
           class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
           Simulators
-        </NuxtLink>
-        <NuxtLink to="/about"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          About
         </NuxtLink>
       </nav>
 

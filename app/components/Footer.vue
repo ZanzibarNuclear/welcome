@@ -28,9 +28,14 @@ const currentYear = new Date().getFullYear()
           </NuxtLink>
         </nav>
 
-        <!-- Copyright -->
-        <div class="text-sm text-gray-600 dark:text-gray-400">
-          © {{ currentYear }} Atomic Ambitions. All rights reserved.
+        <!-- Logo + Copyright -->
+        <div class="flex items-center gap-3">
+          <NuxtLink to="/" class="hover:opacity-80 transition-opacity">
+            <img src="/images/atomic-ambitions-logo-sq.png" alt="Atomic Ambitions" class="h-8 w-8" />
+          </NuxtLink>
+          <span class="text-sm text-gray-600 dark:text-gray-400">
+            © {{ currentYear }} Atomic Ambitions. All rights reserved.
+          </span>
         </div>
       </div>
     </div>

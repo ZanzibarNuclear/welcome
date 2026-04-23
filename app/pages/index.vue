@@ -29,7 +29,7 @@ const { data: featuredSimulators } = await useAsyncData('featured-simulators', a
         <h1 class="text-5xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight">
           Explore the
           <span
-            class="bg-linear-to-r from-primary-600 to-primary-500 dark:from-primary-400 dark:to-primary-300 bg-clip-text text-transparent">
+            class="bg-linear-to-r from-cherenkov-400 to-cherenkov-300 bg-clip-text text-transparent">
             Atomic World
           </span>
         </h1>

@@ -4,6 +4,19 @@
 
 /* Define primary color palette for Tailwind v4 */
 @theme {
+  /* Cherenkov blue — the vivid cyan from the logo */
+  --color-cherenkov-50:  oklch(0.97 0.03 200);
+  --color-cherenkov-100: oklch(0.92 0.07 200);
+  --color-cherenkov-200: oklch(0.85 0.12 200);
+  --color-cherenkov-300: oklch(0.78 0.17 200);
+  --color-cherenkov-400: oklch(0.75 0.20 200);
+  --color-cherenkov-500: oklch(0.72 0.22 200);
+  --color-cherenkov-600: oklch(0.62 0.19 200);
+  --color-cherenkov-700: oklch(0.50 0.15 200);
+  --color-cherenkov-800: oklch(0.38 0.11 200);
+  --color-cherenkov-900: oklch(0.27 0.07 200);
+  --color-cherenkov-950: oklch(0.18 0.04 200);
+
   --color-primary-50: oklch(0.97 0.01 250);
   --color-primary-100: oklch(0.94 0.03 250);
   --color-primary-200: oklch(0.87 0.06 250);
