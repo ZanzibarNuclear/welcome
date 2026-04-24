@@ -17,30 +17,12 @@ const toggleColorMode = () => {
         </NuxtLink>
       </div>
 
-      <!-- Top-level Navigation -->
-      <nav class="hidden md:flex items-center gap-6">
-        <NuxtLink to="/"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          Home
-        </NuxtLink>
-        <NuxtLink to="/isotopes"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          Isotopes
-        </NuxtLink>
-        <NuxtLink to="/simulators"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-          Simulators
-        </NuxtLink>
-      </nav>
-
-      <!-- Right side actions -->
+<!-- Right side actions -->
       <div class="flex items-center gap-2">
         <!-- Color Mode Toggle -->
         <UButton :icon="colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'" color="neutral"
-          variant="ghost" @click="toggleColorMode"
+          variant="ghost" @click="toggleColorMode" class="dark:text-cherenkov-400"
           :aria-label="`Switch to ${colorMode.value === 'dark' ? 'light' : 'dark'} mode`" />
-        <!-- Account Icon -->
-        <UButton icon="i-heroicons-user-circle" color="primary" variant="ghost" aria-label="Account" />
       </div>
     </div>
   </header>

@@ -7,10 +7,8 @@
     <Header />
 
     <!-- Main Content Area (Full Width) -->
-    <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-950">
-      <div class="p-6 text-gray-900 dark:text-gray-100">
-        <slot />
-      </div>
+    <main class="flex-1 overflow-y-auto bg-white dark:bg-gray-950">
+      <slot />
     </main>
 
     <Footer />
