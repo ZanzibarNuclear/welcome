@@ -12,6 +12,27 @@ if (!post.value) {
   throw createError({ statusCode: 404, message: 'Blog post not found' })
 }
 
+const { data: allPosts } = await useAsyncData('blog-navigation', async () => {
+  const items = await queryCollection('content').all()
+  return items
+    .filter((item: any) => item.type === 'blog')
+    .sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+})
+
+const currentIndex = computed(() => {
+  return allPosts.value?.findIndex((item: any) => item.path === post.value?.path) ?? -1
+})
+
+const newerPost = computed(() => {
+  if (!allPosts.value || currentIndex.value <= 0) return null
+  return allPosts.value[currentIndex.value - 1]
+})
+
+const olderPost = computed(() => {
+  if (!allPosts.value || currentIndex.value === -1 || currentIndex.value >= allPosts.value.length - 1) return null
+  return allPosts.value[currentIndex.value + 1]
+})
+
 // Meta tags
 useHead({
   title: post.value.title,
@@ -47,14 +68,27 @@ useHead({
 
     <!-- Article Footer -->
     <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-      <div class="flex justify-between items-center">
-        <UButton to="/blog" variant="ghost" leading-icon="i-heroicons-arrow-left">
-          Back to Blog
-        </UButton>
-        <div class="flex gap-2">
-          <UButton variant="ghost" icon="i-heroicons-share" aria-label="Share article" />
-        </div>
-      </div>
+      <nav class="grid gap-4 md:grid-cols-2">
+        <NuxtLink :to="newerPost ? (newerPost as any).path : '/blog'"
+          class="rounded-xl border border-gray-200 p-5 transition hover:border-primary-500 hover:bg-gray-50 dark:border-gray-800 dark:hover:border-primary-500 dark:hover:bg-gray-900/50">
+          <div class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+            Newer
+          </div>
+          <div class="font-semibold text-gray-900 dark:text-white">
+            {{ newerPost ? newerPost.title : 'Back to Blog' }}
+          </div>
+        </NuxtLink>
+
+        <NuxtLink :to="olderPost ? (olderPost as any).path : '/blog'"
+          class="rounded-xl border border-gray-200 p-5 text-right transition hover:border-primary-500 hover:bg-gray-50 dark:border-gray-800 dark:hover:border-primary-500 dark:hover:bg-gray-900/50">
+          <div class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+            Older
+          </div>
+          <div class="font-semibold text-gray-900 dark:text-white">
+            {{ olderPost ? olderPost.title : 'Back to Blog' }}
+          </div>
+        </NuxtLink>
+      </nav>
     </footer>
   </article>
 </template>
