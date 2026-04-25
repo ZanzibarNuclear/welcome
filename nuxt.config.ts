@@ -3,23 +3,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/eslint'],
-
-  nitro: {
-    preset: 'cloudflare_pages',
-    cloudflare: {
-      deployConfig: true,
-      nodeCompat: true
-    }
-  },
   css: ['~~/assets/css/main.css'],
-
-  ui: {
-    colorMode: {
-      preference: 'dark',
-      fallback: 'dark'
-    }
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark'
   },
-
   content: {
     build: {
       markdown: {

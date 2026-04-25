@@ -45,7 +45,7 @@ The detail page (`app/pages/simulators/[slug].vue`) dynamically imports the comp
 
 ### Styling
 
-Custom prose styles for markdown content are in `assets/css/main.css` (not a Tailwind plugin — plain CSS using `theme()` calls). The primary color palette is defined via Tailwind v4's `@theme` block using OKLCH values. The app is light-mode only (`colorMode.preference: 'light'`).
+Custom prose styles for markdown content are in `assets/css/main.css` (not a Tailwind plugin — plain CSS using `theme()` calls). The primary color palette is defined via Tailwind v4's `@theme` block using OKLCH values. Color mode is configured through Nuxt UI/Nuxt Color Mode; do not assume the app is light-mode only.
 
 ## Adding New Content
 
