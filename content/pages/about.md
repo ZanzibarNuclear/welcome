@@ -1,25 +1,35 @@
 ---
 title: About
-description: Learn more about Atomic Ambitions
+description: Learn about the purpose of Atomic Ambitions, Dave Mount's background, and related writing and social channels.
 ---
 
 # About Atomic Ambitions
 
-## Our Mission
+Atomic Ambitions is a place to make atomic physics, nuclear science, and the physical world feel more understandable. The goal is to connect clear explanations with useful interactive tools, so readers can build intuition instead of only memorizing facts.
 
-We're dedicated to exploring and explaining the fundamental building blocks of our universe, from the smallest particles to the grandest structures.
+## About Dave Mount
 
-## What We Do
+Atomic Ambitions is created by Dave Mount. This page is where I share the background, experience, and point of view behind the project.
 
-At Atomic Ambitions, we believe that understanding the atomic nature of matter is key to appreciating the world around us. We break down complex scientific concepts into accessible, engaging content.
+My aim is to explain technical subjects in a way that is accurate, approachable, and useful for curious readers. As the project grows, this section will include more detail about my credentials and the perspective I bring to the work.
 
-### Our Approach
+## Purpose
 
-- **Clear explanations** of complex topics
-- **Evidence-based** content
-- **Engaging storytelling** that makes science accessible
-- **Regular updates** with new discoveries and insights
+Everything is atoms, but that simple statement opens the door to a huge set of questions: how matter is structured, why elements behave differently, what isotopes are, how radiation works, and where nuclear science shows up in daily life.
 
-## Get in Touch
+Atomic Ambitions exists to explore those questions through:
 
-Have questions or suggestions? We'd love to hear from you. Visit our [contact page](/contact) to get in touch.
+- **Plain-language explainers** for important atomic and nuclear concepts
+- **Interactive references** like the isotope explorer
+- **Simulators** that help make abstract ideas concrete
+- **Links and context** for readers who want to keep learning
+
+## Related Links
+
+- [onBeUseful](https://davemount.substack.com/) - Dave Mount's Substack
+- [@ZanzibarNuclear on X](https://x.com/ZanzibarNuclear)
+- [@DaveMountOnX on X](https://x.com/DaveMountOnX)
+
+## Contact
+
+Have a question, correction, or topic suggestion? Visit the [contact page](/contact) to get in touch.

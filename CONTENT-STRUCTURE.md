@@ -68,15 +68,14 @@ featured: true/false
 - Each simulator references a Vue component that renders the interactive experience
 - Example: `AtomBuilder.vue` for the "Build an Atom" simulator
 
-### 4. **Corporate Pages** (`/about`, `/contact`, `/privacy`, `/terms`)
+### 4. **Corporate Pages** (`/about`, `/contact`, `/policies`)
 Static informational pages.
 
 **Content Location:** `content/pages/`
 **Routes:**
 - `/about` - About page
 - `/contact` - Contact information
-- `/privacy` - Privacy policy
-- `/terms` - Terms of use
+- `/policies` - Terms of use and privacy policy
 
 ## Site Structure
 

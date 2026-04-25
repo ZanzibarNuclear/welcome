@@ -8,17 +8,17 @@ const currentYear = new Date().getFullYear()
       <div class="flex flex-col items-center gap-4">
         <!-- Row 1: Links -->
         <nav class="flex flex-wrap justify-center gap-6 text-sm">
+          <NuxtLink to="/about"
+            class="text-gray-600 dark:text-cherenkov-400 hover:text-gray-900 dark:hover:text-cherenkov-300 transition-colors font-medium">
+            About
+          </NuxtLink>
           <NuxtLink to="/contact"
             class="text-gray-600 dark:text-cherenkov-400 hover:text-gray-900 dark:hover:text-cherenkov-300 transition-colors font-medium">
             Contact
           </NuxtLink>
-          <NuxtLink to="/privacy"
+          <NuxtLink to="/policies"
             class="text-gray-600 dark:text-cherenkov-400 hover:text-gray-900 dark:hover:text-cherenkov-300 transition-colors font-medium">
-            Privacy Policy
-          </NuxtLink>
-          <NuxtLink to="/terms"
-            class="text-gray-600 dark:text-cherenkov-400 hover:text-gray-900 dark:hover:text-cherenkov-300 transition-colors font-medium">
-            Terms of Use
+            Policies
           </NuxtLink>
         </nav>
 

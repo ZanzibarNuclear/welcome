@@ -38,7 +38,3 @@ Follow us for regular updates and interesting science content:
 ## Feedback
 
 Your feedback helps us improve. Whether it's a typo, a suggestion for better explanation, or ideas for new content, we're all ears.
-
----
-
-*We aim to respond to all inquiries within 48 hours.*

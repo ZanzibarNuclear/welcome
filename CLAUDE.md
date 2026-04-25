@@ -28,7 +28,7 @@ content/
 ├── blog/          # type: blog
 ├── lessons/       # type: lesson
 ├── simulators/    # type: simulator
-└── pages/         # static pages (about, contact, privacy, terms)
+└── pages/         # static pages (about, contact, policies)
 ```
 
 ### Simulator Pattern

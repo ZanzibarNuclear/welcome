@@ -23,11 +23,11 @@ const massNumber = computed(() => {
   return protons.value + neutrons.value
 })
 
-const addProton = () => protons.value++
+const addProton = () => { protons.value++ }
 const removeProton = () => { if (protons.value > 0) protons.value-- }
-const addNeutron = () => neutrons.value++
+const addNeutron = () => { neutrons.value++ }
 const removeNeutron = () => { if (neutrons.value > 0) neutrons.value-- }
-const addElectron = () => electrons.value++
+const addElectron = () => { electrons.value++ }
 const removeElectron = () => { if (electrons.value > 0) electrons.value-- }
 const reset = () => {
   protons.value = 0
@@ -49,11 +49,11 @@ const reset = () => {
 
     <!-- Visual Representation -->
     <div
-      class="flex justify-center items-center min-h-[300px] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg p-8">
+      class="flex justify-center items-center min-h-[300px] bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg p-8">
       <div class="relative">
         <!-- Nucleus -->
         <div
-          class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
+          class="w-32 h-32 rounded-full bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
           <div class="text-white text-center">
             <div class="text-xs font-semibold">Nucleus</div>
             <div class="text-2xl font-bold">{{ protons + neutrons }}</div>

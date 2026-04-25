@@ -21,8 +21,9 @@ useHead({
 })
 
 // Import the simulator component dynamically if specified
-const SimulatorComponent = simulator.value.component
-  ? defineAsyncComponent(() => import(`../../components/simulators/${simulator.value.component}.vue`).catch(() => null))
+const simulatorComponentName = simulator.value.component
+const SimulatorComponent = simulatorComponentName
+  ? defineAsyncComponent(() => import(`../../components/simulators/${simulatorComponentName}.vue`).catch(() => null))
   : null
 </script>
 
