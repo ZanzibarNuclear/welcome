@@ -23,5 +23,67 @@ definePageMeta({ layout: 'no-sidebar' })
         </p>
       </div>
     </section>
+
+    <!-- Content Areas -->
+    <section class="px-6 pb-16">
+      <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
+        <NuxtLink to="/lessons"
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          <div>
+            <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
+              Fundamentals
+            </p>
+            <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              Atoms and Other Basics
+            </h2>
+            <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+              Build intuition for atoms, isotopes, particles, radiation, and the core ideas behind the physical world.
+            </p>
+          </div>
+          <span
+            class="mt-8 font-semibold text-cherenkov-500 transition group-hover:text-cherenkov-600 dark:text-cherenkov-300">
+            Start learning
+          </span>
+        </NuxtLink>
+
+        <NuxtLink to="/reactors"
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          <div>
+            <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
+              Reactors
+            </p>
+            <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              Nuclear Reactor Types
+            </h2>
+            <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+              Explore how different reactor designs work, what they are used for, and how they compare.
+            </p>
+          </div>
+          <span
+            class="mt-8 font-semibold text-cherenkov-500 transition group-hover:text-cherenkov-600 dark:text-cherenkov-300">
+            Explore reactors
+          </span>
+        </NuxtLink>
+
+        <NuxtLink to="/blog"
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          <div>
+            <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
+              Blog
+            </p>
+            <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              News and Progress Updates
+            </h2>
+            <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+              Follow timely updates, project notes, and longer essays about atomic science and nuclear technology.
+            </p>
+          </div>
+          <span
+            class="mt-8 font-semibold text-cherenkov-500 transition group-hover:text-cherenkov-600 dark:text-cherenkov-300">
+            Read the blog
+          </span>
+        </NuxtLink>
+      </div>
+    </section>
   </div>
 </template>

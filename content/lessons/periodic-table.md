@@ -1,6 +1,6 @@
 ---
 type: lesson
-title: "The Periodic Table Explained"
+title: "The Periodic Table"
 difficulty: beginner
 duration: 30
 order: 2
@@ -16,11 +16,13 @@ The periodic table is one of the most important tools in chemistry and physics. 
 ## Organization
 
 ### Rows (Periods)
+
 - Each row is called a **period**
 - Elements in the same period have the same number of electron shells
 - There are 7 periods
 
 ### Columns (Groups)
+
 - Each column is called a **group** or **family**
 - Elements in the same group have similar chemical properties
 - They have the same number of valence (outer) electrons
@@ -28,16 +30,19 @@ The periodic table is one of the most important tools in chemistry and physics. 
 ## Key Regions
 
 ### Metals (Left and Center)
+
 - Good conductors of heat and electricity
 - Shiny, malleable, ductile
 - Examples: Iron (Fe), Copper (Cu), Gold (Au)
 
 ### Nonmetals (Right Side)
+
 - Poor conductors (insulators)
 - Dull appearance, brittle when solid
 - Examples: Oxygen (O), Carbon (C), Sulfur (S)
 
 ### Metalloids (Staircase Border)
+
 - Properties between metals and nonmetals
 - Important for semiconductors
 - Examples: Silicon (Si), Germanium (Ge)
@@ -45,16 +50,19 @@ The periodic table is one of the most important tools in chemistry and physics. 
 ## Important Groups
 
 ### Group 1: Alkali Metals
+
 - Highly reactive
 - One valence electron
 - Examples: Sodium (Na), Potassium (K)
 
 ### Group 17: Halogens
+
 - Very reactive nonmetals
 - Seven valence electrons
 - Examples: Fluorine (F), Chlorine (Cl)
 
 ### Group 18: Noble Gases
+
 - Unreactive (inert)
 - Full outer electron shells
 - Examples: Helium (He), Neon (Ne), Argon (Ar)
@@ -62,6 +70,7 @@ The periodic table is one of the most important tools in chemistry and physics. 
 ## Reading the Table
 
 Each element's box typically shows:
+
 - **Symbol**: Chemical abbreviation (H, C, O, etc.)
 - **Atomic Number**: Number of protons
 - **Atomic Mass**: Average mass of the element's atoms
@@ -70,6 +79,7 @@ Each element's box typically shows:
 ## Periodic Trends
 
 As you move across and down the table:
+
 - **Atomic Size**: Decreases left to right, increases top to bottom
 - **Electronegativity**: Increases left to right, decreases top to bottom
 - **Ionization Energy**: Increases left to right, decreases top to bottom
@@ -102,4 +112,4 @@ As you move across and down the table:
 
 ## Next Lesson
 
-Continue to [Chemical Bonding](/lessons/chemical-bonding) to learn how atoms connect.
+Continue to [Isotopes](/lessons/isotopes) to learn about elements with different numbers of neutrons.

@@ -1,10 +1,10 @@
 # Atomic Ambitions Website
 
-A Nuxt 4 + Nuxt Content site for exploring atomic physics through articles, lessons, and interactive simulators.
+A Nuxt 4 + Nuxt Content site for exploring atomic physics through articles, lessons, reactor guides, and interactive simulators.
 
 ## Content Structure
 
-The site is organized into four main content collections:
+The site is organized into five main content collections:
 
 ### 1. **Blog** (`/blog`)
 Articles and thought pieces about atomic physics and particle science.
@@ -68,7 +68,29 @@ featured: true/false
 - Each simulator references a Vue component that renders the interactive experience
 - Example: `AtomBuilder.vue` for the "Build an Atom" simulator
 
-### 4. **Corporate Pages** (`/about`, `/contact`, `/policies`)
+### 4. **Reactors** (`/reactors`)
+Guides to different nuclear reactor designs and concepts.
+
+**Content Location:** `content/reactors/`
+**Frontmatter:**
+```yaml
+type: reactor
+title: "Reactor Type"
+description: "Brief description"
+generation: "Generation II / III"
+coolant: "Light water"
+moderator: "Light water"
+fuel: "Enriched uranium dioxide"
+status: "Widely deployed"
+tags: [light-water, power-reactor]
+order: 1
+```
+
+**Routes:**
+- `/reactors` - Catalog of reactor types
+- `/reactors/[slug]` - Individual reactor guide
+
+### 5. **Corporate Pages** (`/about`, `/contact`, `/policies`)
 Static informational pages.
 
 **Content Location:** `content/pages/`
@@ -84,6 +106,7 @@ content/
 ├── pages/          # Corporate/static pages
 ├── blog/           # Blog articles
 ├── lessons/        # Instructional lessons
+├── reactors/       # Reactor guides
 └── simulators/     # Interactive simulators
 
 app/

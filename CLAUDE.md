@@ -21,12 +21,13 @@ There is no test suite.
 
 ### Content System
 
-All markdown lives under `content/` and is registered as a single `content` collection in `content.config.ts`. Content is queried with `queryCollection('content').path('/section/slug')`. The `type` frontmatter field distinguishes collection intent (blog, lesson, simulator).
+All markdown lives under `content/` and is registered as a single `content` collection in `content.config.ts`. Content is queried with `queryCollection('content').path('/section/slug')`. The `type` frontmatter field distinguishes collection intent (blog, lesson, reactor, simulator).
 
 ```
 content/
 ├── blog/          # type: blog
 ├── lessons/       # type: lesson
+├── reactors/      # type: reactor
 ├── simulators/    # type: simulator
 └── pages/         # static pages (about, contact, policies)
 ```

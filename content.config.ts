@@ -6,7 +6,7 @@ export default defineContentConfig({
       type: 'page',
       source: '**/*.md',
       schema: z.object({
-        type: z.enum(['blog', 'isotope', 'lesson', 'simulator']).optional(),
+        type: z.enum(['blog', 'lesson', 'reactor', 'simulator']).optional(),
         title: z.string(),
         description: z.string().optional(),
         date: z.string().optional(),
@@ -19,17 +19,12 @@ export default defineContentConfig({
         order: z.number().optional(),
         series: z.string().optional(),
         quiz: z.boolean().optional(),
-        component: z.string().optional(),
-        element: z.string().optional(),
-        symbol: z.string().optional(),
-        atomicNumber: z.number().optional(),
-        massNumber: z.number().optional(),
-        neutrons: z.number().optional(),
-        stability: z.enum(['stable', 'radioactive']).optional(),
-        halfLife: z.string().optional(),
-        decayMode: z.string().optional(),
-        abundance: z.string().optional(),
-        applications: z.array(z.string()).optional()
+        generation: z.string().optional(),
+        coolant: z.string().optional(),
+        moderator: z.string().optional(),
+        fuel: z.string().optional(),
+        status: z.string().optional(),
+        component: z.string().optional()
       })
     })
   }

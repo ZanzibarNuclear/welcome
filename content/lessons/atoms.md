@@ -1,6 +1,6 @@
 ---
 type: lesson
-title: "Atomic Structure Basics"
+title: "Atoms"
 difficulty: beginner
 duration: 20
 order: 1
@@ -20,18 +20,21 @@ An atom is the smallest unit of matter that retains the properties of an element
 ## The Three Main Parts
 
 ### 1. Protons
+
 - Located in the nucleus (center)
 - Positively charged (+1)
 - Define the element (atomic number)
 - Mass: approximately 1 atomic mass unit (amu)
 
 ### 2. Neutrons
+
 - Also in the nucleus
 - No electric charge (neutral)
 - Add mass but don't change the element
 - Mass: approximately 1 amu
 
 ### 3. Electrons
+
 - Orbit the nucleus in shells/orbitals
 - Negatively charged (-1)
 - Determine chemical behavior
@@ -46,6 +49,7 @@ An atom is the smallest unit of matter that retains the properties of an element
 ## Example: Carbon
 
 Let's look at a carbon atom (C):
+
 - Atomic number: 6 (6 protons)
 - Mass number: 12 (6 protons + 6 neutrons)
 - Electrons: 6 (in a neutral atom)
@@ -80,4 +84,4 @@ Test your understanding with these questions:
 
 ## Next Lesson
 
-Continue to [Electron Configuration](/lessons/electron-configuration) to learn how electrons arrange themselves around the nucleus.
+Continue to [Periodic Table Explained](/lessons/periodic-table) to learn the common way we organize the elements.

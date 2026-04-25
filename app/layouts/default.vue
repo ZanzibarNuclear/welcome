@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const route = useRoute()
 
-// Show sidebar only on specific content pages (blog posts, lessons, simulators detail pages)
+// Show sidebar only on specific content detail pages
 const showSidebar = computed(() => {
   const path = route.path
   // Show sidebar on detail pages (with slugs) but not on list/index pages
   return (
-    (path.startsWith('/isotopes/') && path !== '/isotopes' && path !== '/isotopes/') ||
-    (path.startsWith('/simulators/') && path !== '/simulators' && path !== '/simulators/')
+    (path.startsWith('/lessons/') && path !== '/lessons' && path !== '/lessons/') ||
+    (path.startsWith('/simulators/') && path !== '/simulators' && path !== '/simulators/') ||
+    (path.startsWith('/reactors/') && path !== '/reactors' && path !== '/reactors/')
   )
 })
 </script>
