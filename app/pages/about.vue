@@ -5,5 +5,10 @@ const { data: page } = await useAsyncData('about', () => {
 </script>
 
 <template>
-  <ContentRenderer v-if="page" :value="page" />
+  <div>
+    <ContentRenderer v-if="page" :value="page" />
+    <ClientOnly>
+      <VisitStatsWidget />
+    </ClientOnly>
+  </div>
 </template>
