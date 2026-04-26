@@ -19,7 +19,7 @@ definePageMeta({ layout: 'no-sidebar' })
         </p>
         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
           Get a taste of what's to come on this website. Try the <NuxtLink
-to="https://isotopes.atomicambitions.com"
+to="/simulators/isotope-explorer"
             class="text-cherenkov-400 dark:text-cherenkov-300 underline">isotope explorer</NuxtLink>.
         </p>
       </div>
@@ -27,7 +27,7 @@ to="https://isotopes.atomicambitions.com"
 
     <!-- Content Areas -->
     <section class="px-6 pb-16">
-      <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
+      <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-4">
         <NuxtLink
 to="/lessons"
           class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
@@ -45,6 +45,26 @@ to="/lessons"
           <span
             class="mt-8 font-semibold text-cherenkov-500 transition group-hover:text-cherenkov-600 dark:text-cherenkov-300">
             Start learning
+          </span>
+        </NuxtLink>
+
+        <NuxtLink
+to="/simulators"
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          <div>
+            <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
+              Simulators
+            </p>
+            <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              Interactive Tools
+            </h2>
+            <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+              Experiment with atoms and isotopes through guided, browser-based tools and visual references.
+            </p>
+          </div>
+          <span
+            class="mt-8 font-semibold text-cherenkov-500 transition group-hover:text-cherenkov-600 dark:text-cherenkov-300">
+            Try simulators
           </span>
         </NuxtLink>
 

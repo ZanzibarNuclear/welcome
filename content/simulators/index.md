@@ -7,12 +7,6 @@ description: Hands-on experiments and visualizations for exploring atomic physic
 
 Learn by doing! Our interactive simulators let you experiment with atoms, molecules, and particles in real-time.
 
-## Available Simulators
+## Featured Tools
 
-Explore atomic physics through interactive, browser-based experiments.
-
-### Beginner Friendly
-Start with these intuitive simulators to build foundational understanding.
-
-### Advanced Tools
-For those ready to dive deeper into quantum mechanics and particle physics.
+Start with Build an Atom to practice the structure of atoms, then use the isotope explorer guide to investigate how neutron counts shape isotope identity, stability, and decay.
