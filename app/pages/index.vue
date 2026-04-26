@@ -6,7 +6,7 @@ definePageMeta({ layout: 'no-sidebar' })
   <div>
     <!-- Hero Photo -->
     <div class="w-full aspect-video bg-gray-200 dark:bg-gray-800">
-      <img src="/images/e-buggy.jpg" alt="futuristic buggy" class="w-full h-full object-cover" >
+      <img src="/images/e-buggy.jpg" alt="futuristic buggy" class="w-full h-full object-cover">
     </div>
 
     <!-- Hero Text -->
@@ -56,15 +56,16 @@ to="/simulators"
               Simulators
             </p>
             <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-              Interactive Tools
+              Explore With Models
             </h2>
             <p class="leading-relaxed text-gray-600 dark:text-gray-400">
-              Experiment with atoms and isotopes through guided, browser-based tools and visual references.
+              Experiment with atoms and isotopes using our interactive models. A safe way to learn about atoms, how they
+              are put together, and how they change.
             </p>
           </div>
           <span
             class="mt-8 font-semibold text-cherenkov-500 transition group-hover:text-cherenkov-600 dark:text-cherenkov-300">
-            Try simulators
+            Find some fun
           </span>
         </NuxtLink>
 
@@ -73,7 +74,7 @@ to="/reactors"
           class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
-              Reactors
+              Technology
             </p>
             <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
               Nuclear Reactor Types
@@ -96,10 +97,11 @@ to="/blog"
               Blog
             </p>
             <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-              News and Progress Updates
+              Progress and 'Pinions
             </h2>
             <p class="leading-relaxed text-gray-600 dark:text-gray-400">
-              Follow timely updates, project notes, and longer essays about atomic science and nuclear technology.
+              Optimistic views of the evolving world of atomic energy. Topical news and essays from an upbeat
+              perspective.
             </p>
           </div>
           <span
