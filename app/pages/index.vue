@@ -18,9 +18,11 @@ definePageMeta({ layout: 'no-sidebar' })
           Discover the fundamental building blocks of our universe.
         </p>
         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-          Get a taste of what's to come on this website. Try the <NuxtLink
+          In a hurry? Check out the <NuxtLink
 to="/simulators/isotope-explorer"
-            class="text-cherenkov-400 dark:text-cherenkov-300 underline">isotope explorer</NuxtLink>.
+            class="text-cherenkov-400 dark:text-cherenkov-300 underline">isotope explorer</NuxtLink> or <NuxtLink
+            to="/simulators/build-an-atom" class="text-cherenkov-400 dark:text-cherenkov-300 underline">atom builder.
+          </NuxtLink>
         </p>
       </div>
     </section>
@@ -30,7 +32,7 @@ to="/simulators/isotope-explorer"
       <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-4">
         <NuxtLink
 to="/lessons"
-          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
               Fundamentals
@@ -50,7 +52,7 @@ to="/lessons"
 
         <NuxtLink
 to="/simulators"
-          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
               Simulators
@@ -71,7 +73,7 @@ to="/simulators"
 
         <NuxtLink
 to="/reactors"
-          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
               Technology
@@ -91,7 +93,7 @@ to="/reactors"
 
         <NuxtLink
 to="/blog"
-          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
+          class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
               Blog

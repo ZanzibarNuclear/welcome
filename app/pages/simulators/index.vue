@@ -14,8 +14,8 @@ const { data: indexPage } = await useAsyncData('simulators-index', () => {
 
     <div class="grid gap-6 md:grid-cols-2">
       <NuxtLink
-        to="/simulators/build-an-atom"
-        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
+to="/simulators/build-an-atom"
+        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
         <div>
           <div class="mb-5 flex items-center justify-between">
             <span
@@ -38,13 +38,13 @@ const { data: indexPage } = await useAsyncData('simulators-index', () => {
       </NuxtLink>
 
       <NuxtLink
-        to="/simulators/isotope-explorer"
-        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
+to="/simulators/isotope-explorer"
+        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
         <div>
           <div class="mb-5 flex items-center justify-between">
             <span
               class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
-              Guide
+              Intermediate
             </span>
             <UIcon name="i-heroicons-arrow-top-right-on-square" class="text-3xl text-primary-500" />
           </div>

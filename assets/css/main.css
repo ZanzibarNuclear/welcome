@@ -124,7 +124,12 @@
     color: theme(colors.primary.700);
     text-decoration-color: theme(colors.primary.500);
   }
-  
+
+  & a.no-underline,
+  & a.no-underline:hover {
+    text-decoration: none;
+  }
+
   /* Code */
   & code {
     color: theme(colors.gray.900);

@@ -5,8 +5,6 @@ description: Hands-on experiments and visualizations for exploring atomic physic
 
 # Interactive Simulators
 
-Learn by doing! Our interactive simulators let you experiment with atoms, molecules, and particles in real-time.
+Learn by doing! These simulators use models that are backed by data from experiments. You get a chance to see what happens as you change things. Play around, and follow your curiosity.
 
 ## Featured Tools
-
-Start with Build an Atom to practice the structure of atoms, then use the isotope explorer guide to investigate how neutron counts shape isotope identity, stability, and decay.
