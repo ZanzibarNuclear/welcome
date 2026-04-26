@@ -20,8 +20,8 @@ We may track basic usage information to understand how people use Atomic Ambitio
 
 Usage information is used to improve the site, fix problems, understand what content is useful, and make future tools and explanations better.
 
-We do not sell personal information. If we add features in the future that ask for personal information, such as accounts, newsletters, or contact forms, we will update this policy to explain what is collected and why.
+We do not share personal information with third parties. In the future, if we add features that collect personal information, we will update this policy to explain what is collected and why.
 
 ## Questions
 
-If you have questions about these policies, please visit the [contact page](/contact).
+If you have questions about these policies, please visit the [contact page](/contact) to learn how to get in touch.

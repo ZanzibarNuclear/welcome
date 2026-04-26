@@ -22,8 +22,7 @@ const shortVisitorId = computed(() => visitorId.value ? visitorId.value.slice(0,
 <template>
   <aside
     class="not-prose mt-10 rounded-2xl border border-cherenkov-200 bg-cherenkov-50/70 p-6 shadow-sm dark:border-cherenkov-800 dark:bg-cherenkov-950/40"
-    aria-labelledby="visit-stats-title"
-  >
+    aria-labelledby="visit-stats-title">
     <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <p class="text-sm font-semibold uppercase tracking-wider text-cherenkov-700 dark:text-cherenkov-300">
@@ -33,7 +32,8 @@ const shortVisitorId = computed(() => visitorId.value ? visitorId.value.slice(0,
           {{ visitorStatus }}
         </h2>
         <p class="mt-2 max-w-xl text-sm leading-6 text-gray-700 dark:text-gray-300">
-          This browser has a first-party visitor cookie so Atomic Ambitions can count one visit per calendar day.
+          This browser has a first-party visitor cookie so Atomic Ambitions can measure your interest in Atomic
+          Ambitions.
         </p>
       </div>
 
