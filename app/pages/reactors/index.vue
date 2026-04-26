@@ -13,10 +13,12 @@ const { data: indexPage } = await useAsyncData('reactors-index', () => {
   return queryCollection('content').path('/reactors').first()
 })
 
+type Reactor = NonNullable<typeof reactors.value>[number]
+
 const reactorsByGeneration = computed(() => {
   if (!reactors.value) return {}
 
-  return reactors.value.reduce((groups: Record<string, any[]>, reactor: any) => {
+  return reactors.value.reduce<Record<string, Reactor[]>>((groups, reactor) => {
     const generation = reactor.generation || 'Other Reactors'
     groups[generation] ||= []
     groups[generation].push(reactor)
@@ -35,8 +37,8 @@ const reactorsByGeneration = computed(() => {
       <section v-for="(generationReactors, generation) in reactorsByGeneration" :key="generation">
         <h2>{{ generation }}</h2>
         <ul>
-          <li v-for="reactor in generationReactors" :key="(reactor as any).path">
-            <NuxtLink :to="(reactor as any).path">
+          <li v-for="reactor in generationReactors" :key="reactor.path">
+            <NuxtLink :to="reactor.path">
               {{ reactor.title }}
             </NuxtLink>
             - {{ reactor.description }}

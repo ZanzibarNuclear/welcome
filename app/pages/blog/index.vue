@@ -3,8 +3,8 @@
 const { data: posts } = await useAsyncData('blog-posts', async () => {
   const items = await queryCollection('content').all()
   return items
-    .filter((item: any) => item.type === 'blog')
-    .sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+    .filter(item => item.type === 'blog')
+    .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
 })
 
 // Fetch the index page content
@@ -23,8 +23,8 @@ const { data: indexPage } = await useAsyncData('blog-index', () => {
     <div class="prose prose-lg">
       <h2>Recent Posts</h2>
       <ul v-if="posts?.length">
-        <li v-for="post in posts" :key="(post as any).path">
-          <NuxtLink :to="(post as any).path">
+        <li v-for="post in posts" :key="post.path">
+          <NuxtLink :to="post.path">
             {{ post.title }}
           </NuxtLink>
           <span v-if="post.date"> - {{ post.date }}</span>

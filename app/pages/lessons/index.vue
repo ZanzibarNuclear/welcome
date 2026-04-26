@@ -2,12 +2,14 @@
 const { data: lessons } = await useAsyncData('lessons', async () => {
   const items = await queryCollection('content').all()
   return items
-    .filter((item: any) => item.type === 'lesson')
-    .sort((a: any, b: any) => {
+    .filter(item => item.type === 'lesson')
+    .sort((a, b) => {
       const seriesCompare = (a.series || '').localeCompare(b.series || '')
       return seriesCompare || (a.order || 999) - (b.order || 999)
     })
 })
+
+type Lesson = NonNullable<typeof lessons.value>[number]
 
 // Fetch the index page content
 const { data: indexPage } = await useAsyncData('lessons-index', () => {
@@ -17,7 +19,7 @@ const { data: indexPage } = await useAsyncData('lessons-index', () => {
 const lessonsBySeries = computed(() => {
   if (!lessons.value) return {}
 
-  return lessons.value.reduce((groups: Record<string, any[]>, lesson: any) => {
+  return lessons.value.reduce<Record<string, Lesson[]>>((groups, lesson) => {
     const series = lesson.series || 'Other Lessons'
     groups[series] ||= []
     groups[series].push(lesson)
@@ -37,8 +39,8 @@ const lessonsBySeries = computed(() => {
       <section v-for="(seriesLessons, seriesName) in lessonsBySeries" :key="seriesName">
         <h2>{{ seriesName }}</h2>
         <ul>
-          <li v-for="lesson in seriesLessons" :key="(lesson as any).path">
-            <NuxtLink :to="(lesson as any).path">
+          <li v-for="lesson in seriesLessons" :key="lesson.path">
+            <NuxtLink :to="lesson.path">
               {{ lesson.title }}
             </NuxtLink>
             - {{ lesson.description }}

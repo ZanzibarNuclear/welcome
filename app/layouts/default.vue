@@ -20,7 +20,8 @@ const showSidebar = computed(() => {
     <!-- Main Layout -->
     <div class="flex flex-1 overflow-hidden">
       <!-- Left Sidebar -->
-      <aside v-if="showSidebar"
+      <aside
+v-if="showSidebar"
         class="w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-y-auto sticky top-0 h-screen">
         <Navigation />
       </aside>

@@ -22,7 +22,8 @@ useHead({
   <article v-if="reactor">
     <header class="mb-8 border-b border-gray-200 pb-8 dark:border-gray-800">
       <div class="mb-4 flex flex-wrap items-center gap-2">
-        <span v-if="reactor.generation"
+        <span
+v-if="reactor.generation"
           class="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
           {{ reactor.generation }}
         </span>
@@ -39,17 +40,20 @@ useHead({
       </p>
 
       <dl class="mt-8 grid gap-4 md:grid-cols-3">
-        <div v-if="reactor.coolant"
+        <div
+v-if="reactor.coolant"
           class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
           <dt class="mb-1 text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Coolant</dt>
           <dd class="font-semibold text-gray-900 dark:text-white">{{ reactor.coolant }}</dd>
         </div>
-        <div v-if="reactor.moderator"
+        <div
+v-if="reactor.moderator"
           class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
           <dt class="mb-1 text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Moderator</dt>
           <dd class="font-semibold text-gray-900 dark:text-white">{{ reactor.moderator }}</dd>
         </div>
-        <div v-if="reactor.fuel"
+        <div
+v-if="reactor.fuel"
           class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/50">
           <dt class="mb-1 text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Fuel</dt>
           <dd class="font-semibold text-gray-900 dark:text-white">{{ reactor.fuel }}</dd>

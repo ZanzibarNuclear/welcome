@@ -15,12 +15,12 @@ if (!post.value) {
 const { data: allPosts } = await useAsyncData('blog-navigation', async () => {
   const items = await queryCollection('content').all()
   return items
-    .filter((item: any) => item.type === 'blog')
-    .sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+    .filter(item => item.type === 'blog')
+    .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
 })
 
 const currentIndex = computed(() => {
-  return allPosts.value?.findIndex((item: any) => item.path === post.value?.path) ?? -1
+  return allPosts.value?.findIndex(item => item.path === post.value?.path) ?? -1
 })
 
 const newerPost = computed(() => {
@@ -56,7 +56,8 @@ useHead({
       </h1>
 
       <div v-if="post.tags" class="flex flex-wrap gap-2">
-        <span v-for="tag in post.tags" :key="tag"
+        <span
+v-for="tag in post.tags" :key="tag"
           class="text-sm px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
           {{ tag }}
         </span>
@@ -69,7 +70,8 @@ useHead({
     <!-- Article Footer -->
     <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
       <nav class="grid gap-4 md:grid-cols-2">
-        <NuxtLink :to="newerPost ? (newerPost as any).path : '/blog'"
+        <NuxtLink
+          :to="newerPost ? newerPost.path : '/blog'"
           class="rounded-xl border border-gray-200 p-5 transition hover:border-primary-500 hover:bg-gray-50 dark:border-gray-800 dark:hover:border-primary-500 dark:hover:bg-gray-900/50">
           <div class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">
             Newer
@@ -79,7 +81,8 @@ useHead({
           </div>
         </NuxtLink>
 
-        <NuxtLink :to="olderPost ? (olderPost as any).path : '/blog'"
+        <NuxtLink
+          :to="olderPost ? olderPost.path : '/blog'"
           class="rounded-xl border border-gray-200 p-5 text-right transition hover:border-primary-500 hover:bg-gray-50 dark:border-gray-800 dark:hover:border-primary-500 dark:hover:bg-gray-900/50">
           <div class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">
             Older

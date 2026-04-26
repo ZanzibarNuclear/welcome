@@ -64,11 +64,11 @@ const reset = () => {
         <div v-if="electrons > 0" class="absolute inset-0 -m-8">
           <div
             class="w-48 h-48 rounded-full border-2 border-dashed border-primary-300 dark:border-primary-600 animate-spin-slow">
-            <div v-for="i in Math.min(electrons, 8)" :key="i" class="absolute w-3 h-3 bg-blue-500 rounded-full" :style="{
+            <div
+v-for="i in Math.min(electrons, 8)" :key="i" class="absolute w-3 h-3 bg-blue-500 rounded-full" :style="{
               top: `${50 + 45 * Math.sin(i * Math.PI / 4)}%`,
               left: `${50 + 45 * Math.cos(i * Math.PI / 4)}%`
-            }">
-            </div>
+            }"/>
           </div>
         </div>
       </div>
@@ -83,9 +83,9 @@ const reset = () => {
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ protons }}</div>
         </div>
         <div class="flex gap-2">
-          <UButton @click="removeProton" :disabled="protons === 0" color="neutral" variant="outline" class="flex-1">-
+          <UButton :disabled="protons === 0" color="neutral" variant="outline" class="flex-1" @click="removeProton">-
           </UButton>
-          <UButton @click="addProton" color="primary" class="flex-1">+</UButton>
+          <UButton color="primary" class="flex-1" @click="addProton">+</UButton>
         </div>
       </div>
 
@@ -96,9 +96,9 @@ const reset = () => {
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ neutrons }}</div>
         </div>
         <div class="flex gap-2">
-          <UButton @click="removeNeutron" :disabled="neutrons === 0" color="neutral" variant="outline" class="flex-1">-
+          <UButton :disabled="neutrons === 0" color="neutral" variant="outline" class="flex-1" @click="removeNeutron">-
           </UButton>
-          <UButton @click="addNeutron" color="primary" class="flex-1">+</UButton>
+          <UButton color="primary" class="flex-1" @click="addNeutron">+</UButton>
         </div>
       </div>
 
@@ -109,16 +109,16 @@ const reset = () => {
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ electrons }}</div>
         </div>
         <div class="flex gap-2">
-          <UButton @click="removeElectron" :disabled="electrons === 0" color="neutral" variant="outline" class="flex-1">
+          <UButton :disabled="electrons === 0" color="neutral" variant="outline" class="flex-1" @click="removeElectron">
             -</UButton>
-          <UButton @click="addElectron" color="primary" class="flex-1">+</UButton>
+          <UButton color="primary" class="flex-1" @click="addElectron">+</UButton>
         </div>
       </div>
     </div>
 
     <!-- Reset Button -->
     <div class="text-center">
-      <UButton @click="reset" variant="outline" color="neutral">Reset</UButton>
+      <UButton variant="outline" color="neutral" @click="reset">Reset</UButton>
     </div>
   </div>
 </template>

@@ -6,7 +6,7 @@ definePageMeta({ layout: 'no-sidebar' })
   <div>
     <!-- Hero Photo -->
     <div class="w-full aspect-video bg-gray-200 dark:bg-gray-800">
-      <img src="/images/e-buggy.jpg" alt="futuristic buggy" class="w-full h-full object-cover" />
+      <img src="/images/e-buggy.jpg" alt="futuristic buggy" class="w-full h-full object-cover" >
     </div>
 
     <!-- Hero Text -->
@@ -18,7 +18,8 @@ definePageMeta({ layout: 'no-sidebar' })
           Discover the fundamental building blocks of our universe.
         </p>
         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-          Get a taste of what's to come on this website. Try the <NuxtLink to="https://isotopes.atomicambitions.com"
+          Get a taste of what's to come on this website. Try the <NuxtLink
+to="https://isotopes.atomicambitions.com"
             class="text-cherenkov-400 dark:text-cherenkov-300 underline">isotope explorer</NuxtLink>.
         </p>
       </div>
@@ -27,7 +28,8 @@ definePageMeta({ layout: 'no-sidebar' })
     <!-- Content Areas -->
     <section class="px-6 pb-16">
       <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
-        <NuxtLink to="/lessons"
+        <NuxtLink
+to="/lessons"
           class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
@@ -46,7 +48,8 @@ definePageMeta({ layout: 'no-sidebar' })
           </span>
         </NuxtLink>
 
-        <NuxtLink to="/reactors"
+        <NuxtLink
+to="/reactors"
           class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">
@@ -65,7 +68,8 @@ definePageMeta({ layout: 'no-sidebar' })
           </span>
         </NuxtLink>
 
-        <NuxtLink to="/blog"
+        <NuxtLink
+to="/blog"
           class="group flex min-h-64 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-cherenkov-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-cherenkov-500">
           <div>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-cherenkov-500 dark:text-cherenkov-300">

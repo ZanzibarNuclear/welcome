@@ -56,7 +56,8 @@ const SimulatorComponent = simulatorComponentName
       </p>
 
       <div v-if="simulator.tags" class="flex flex-wrap gap-2 mt-4">
-        <span v-for="tag in simulator.tags" :key="tag"
+        <span
+v-for="tag in simulator.tags" :key="tag"
           class="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
           {{ tag }}
         </span>
