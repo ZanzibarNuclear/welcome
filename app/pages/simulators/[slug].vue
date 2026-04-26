@@ -64,16 +64,11 @@ v-for="tag in simulator.tags" :key="tag"
       </div>
     </header>
 
-    <!-- Simulator Content/Instructions -->
-    <div class="mb-8">
-      <ContentRenderer :value="simulator" class="prose prose-lg" />
-    </div>
-
     <!-- Interactive Simulator Component -->
-    <div v-if="SimulatorComponent" class="my-12 p-8 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-gray-800">
+    <div v-if="SimulatorComponent" class="mb-12 p-8 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-gray-800">
       <component :is="SimulatorComponent" />
     </div>
-    <div v-else class="my-12 p-12 bg-gray-50 dark:bg-gray-900/50 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700 text-center">
+    <div v-else class="mb-12 p-12 bg-gray-50 dark:bg-gray-900/50 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700 text-center">
       <UIcon name="i-heroicons-beaker" class="text-6xl text-gray-400 dark:text-gray-600 mb-4" />
       <p class="text-gray-600 dark:text-gray-400 text-lg">
         Interactive simulator coming soon!
@@ -81,6 +76,11 @@ v-for="tag in simulator.tags" :key="tag"
       <p class="text-gray-500 dark:text-gray-500 text-sm mt-2">
         Component: {{ simulator.component || 'Not specified' }}
       </p>
+    </div>
+
+    <!-- Simulator Content/Instructions -->
+    <div class="mb-8">
+      <ContentRenderer :value="simulator" class="prose prose-lg" />
     </div>
 
     <!-- Simulator Footer -->

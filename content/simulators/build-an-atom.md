@@ -1,14 +1,14 @@
 ---
 type: simulator
-title: "Build an Atom"
+title: "Bohr Model Builder"
 component: "AtomBuilder"
 difficulty: beginner
-description: "Construct atoms by adding protons, neutrons, and electrons. See how the element changes."
+description: "See how an element changes as you add protons, neutrons, and electrons."
 tags: [atoms, elements, interactive]
 featured: true
 ---
 
-# Build an Atom
+## Ready to Experiment?
 
 Create your own atoms from scratch! Add protons, neutrons, and electrons to see how they combine to form different elements.
 
@@ -36,16 +36,13 @@ Create your own atoms from scratch! Add protons, neutrons, and electrons to see 
 ## Key Concepts
 
 ### Atomic Number
+
 The number of protons defines which element you have. Change the protons, change the element!
 
 ### Isotopes
+
 Atoms of the same element with different numbers of neutrons. Carbon-12 and Carbon-14 are both carbon, just with different neutrons.
 
 ### Ions
+
 When electrons don't equal protons, the atom has a charge. More electrons = negative ion. Fewer electrons = positive ion.
-
----
-
-## Ready to Experiment?
-
-The simulator is loaded below. Start building!

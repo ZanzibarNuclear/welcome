@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { getElectronShells } from './atomShellData'
 
 const protons = ref(0)
 const neutrons = ref(0)
@@ -8,7 +9,23 @@ const electrons = ref(0)
 const elements = [
   'None', 'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon',
   'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium', 'Aluminum',
-  'Silicon', 'Phosphorus', 'Sulfur', 'Chlorine', 'Argon', 'Potassium', 'Calcium'
+  'Silicon', 'Phosphorus', 'Sulfur', 'Chlorine', 'Argon', 'Potassium', 'Calcium',
+  'Scandium', 'Titanium', 'Vanadium', 'Chromium', 'Manganese', 'Iron', 'Cobalt',
+  'Nickel', 'Copper', 'Zinc', 'Gallium', 'Germanium', 'Arsenic', 'Selenium',
+  'Bromine', 'Krypton', 'Rubidium', 'Strontium', 'Yttrium', 'Zirconium', 'Niobium',
+  'Molybdenum', 'Technetium', 'Ruthenium', 'Rhodium', 'Palladium', 'Silver',
+  'Cadmium', 'Indium', 'Tin', 'Antimony', 'Tellurium', 'Iodine', 'Xenon',
+  'Cesium', 'Barium', 'Lanthanum', 'Cerium', 'Praseodymium', 'Neodymium',
+  'Promethium', 'Samarium', 'Europium', 'Gadolinium', 'Terbium', 'Dysprosium',
+  'Holmium', 'Erbium', 'Thulium', 'Ytterbium', 'Lutetium', 'Hafnium', 'Tantalum',
+  'Tungsten', 'Rhenium', 'Osmium', 'Iridium', 'Platinum', 'Gold', 'Mercury',
+  'Thallium', 'Lead', 'Bismuth', 'Polonium', 'Astatine', 'Radon', 'Francium',
+  'Radium', 'Actinium', 'Thorium', 'Protactinium', 'Uranium', 'Neptunium',
+  'Plutonium', 'Americium', 'Curium', 'Berkelium', 'Californium', 'Einsteinium',
+  'Fermium', 'Mendelevium', 'Nobelium', 'Lawrencium', 'Rutherfordium', 'Dubnium',
+  'Seaborgium', 'Bohrium', 'Hassium', 'Meitnerium', 'Darmstadtium', 'Roentgenium',
+  'Copernicium', 'Nihonium', 'Flerovium', 'Moscovium', 'Livermorium', 'Tennessine',
+  'Oganesson'
 ]
 
 const currentElement = computed(() => {
@@ -22,6 +39,17 @@ const charge = computed(() => {
 const massNumber = computed(() => {
   return protons.value + neutrons.value
 })
+
+const electronShells = computed(() => getElectronShells(protons.value, electrons.value))
+
+const SHELL_INNER = 180
+const SHELL_OUTER = 460
+
+const shellDiameter = (idx: number) => {
+  const n = electronShells.value.length
+  if (n <= 1) return SHELL_INNER
+  return SHELL_INNER + ((SHELL_OUTER - SHELL_INNER) * idx) / (n - 1)
+}
 
 const addProton = () => { protons.value++ }
 const removeProton = () => { if (protons.value > 0) protons.value-- }
@@ -49,26 +77,33 @@ const reset = () => {
 
     <!-- Visual Representation -->
     <div
-      class="flex justify-center items-center min-h-[300px] bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg p-8">
-      <div class="relative">
+      class="flex justify-center items-center min-h-[480px] bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg p-8 overflow-hidden">
+      <div class="relative flex items-center justify-center" style="width: 460px; height: 460px;">
+        <!-- Electron shells -->
+        <div
+          v-for="(count, shellIdx) in electronShells" :key="shellIdx"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-primary-300 dark:border-primary-600 animate-spin-slow"
+          :style="{
+            width: `${shellDiameter(shellIdx)}px`,
+            height: `${shellDiameter(shellIdx)}px`,
+            animationDuration: `${20 + shellIdx * 8}s`,
+            animationDirection: shellIdx % 2 === 0 ? 'normal' : 'reverse'
+          }">
+          <div
+            v-for="i in count" :key="i"
+            class="absolute w-3 h-3 bg-blue-500 rounded-full -translate-x-1/2 -translate-y-1/2"
+            :style="{
+              top: `${50 - 50 * Math.cos((i - 1) * 2 * Math.PI / count)}%`,
+              left: `${50 + 50 * Math.sin((i - 1) * 2 * Math.PI / count)}%`
+            }"/>
+        </div>
+
         <!-- Nucleus -->
         <div
-          class="w-32 h-32 rounded-full bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
+          class="relative w-32 h-32 rounded-full bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg z-10">
           <div class="text-white text-center">
             <div class="text-xs font-semibold">Nucleus</div>
             <div class="text-2xl font-bold">{{ protons + neutrons }}</div>
-          </div>
-        </div>
-
-        <!-- Electron shells (simplified) -->
-        <div v-if="electrons > 0" class="absolute inset-0 -m-8">
-          <div
-            class="w-48 h-48 rounded-full border-2 border-dashed border-primary-300 dark:border-primary-600 animate-spin-slow">
-            <div
-v-for="i in Math.min(electrons, 8)" :key="i" class="absolute w-3 h-3 bg-blue-500 rounded-full" :style="{
-              top: `${50 + 45 * Math.sin(i * Math.PI / 4)}%`,
-              left: `${50 + 45 * Math.cos(i * Math.PI / 4)}%`
-            }"/>
           </div>
         </div>
       </div>
