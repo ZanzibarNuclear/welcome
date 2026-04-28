@@ -53,7 +53,9 @@ Interactive experiments and visualizations for hands-on learning.
 ```yaml
 type: simulator
 title: "Simulator Title"
-component: "ComponentName"  # Vue component in app/components/simulators/
+component: "ComponentName"  # Optional: Vue component in app/components/simulators/
+externalUrl: "https://example.com"  # Optional: external simulator URL
+externalLabel: "Launch Simulator"  # Optional: CTA label for external simulators
 difficulty: beginner|intermediate|advanced
 description: "Brief description"
 tags: [tag1, tag2]
@@ -62,10 +64,11 @@ featured: true/false
 
 **Routes:**
 - `/simulators` - Gallery of all simulators grouped by difficulty
-- `/simulators/[slug]` - Individual simulator page with embedded component
+- `/simulators/[slug]` - Individual simulator guide page with optional embedded component or external launch link
 
 **Simulator Components:** Located in `app/components/simulators/`
-- Each simulator references a Vue component that renders the interactive experience
+- Simulators may reference a Vue component that renders an embedded interactive experience
+- External simulators can omit `component` and use `externalUrl` instead
 - Example: `AtomBuilder.vue` for the "Build an Atom" simulator
 
 ### 4. **Reactors** (`/reactors`)

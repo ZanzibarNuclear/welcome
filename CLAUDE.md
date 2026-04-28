@@ -34,11 +34,9 @@ content/
 
 ### Simulator Pattern
 
-Simulators are the most complex content type. Each simulator has:
-1. A markdown file in `content/simulators/` with a `component: "ComponentName"` frontmatter field
-2. A Vue component in `app/components/simulators/ComponentName.vue`
+Simulators are the most complex content type. Each simulator has a markdown file in `content/simulators/`. Embedded simulators also use a `component: "ComponentName"` frontmatter field and a Vue component in `app/components/simulators/ComponentName.vue`. External simulators can omit `component` and use `externalUrl`/`externalLabel` frontmatter instead.
 
-The detail page (`app/pages/simulators/[slug].vue`) dynamically imports the component by name using `defineAsyncComponent`. If no component exists, a "coming soon" placeholder renders instead.
+The detail page (`app/pages/simulators/[slug].vue`) dynamically imports embedded components by name using `defineAsyncComponent`, and renders external launch links when `externalUrl` is set.
 
 ### Layout System
 
@@ -50,7 +48,9 @@ Custom prose styles for markdown content are in `assets/css/main.css` (not a Tai
 
 ## Adding New Content
 
-**New simulator:** create `content/simulators/slug.md` (with `component: "MyComponent"` in frontmatter) + `app/components/simulators/MyComponent.vue`.
+**New embedded simulator:** create `content/simulators/slug.md` (with `component: "MyComponent"` in frontmatter) + `app/components/simulators/MyComponent.vue`.
+
+**New external simulator guide:** create `content/simulators/slug.md` with `externalUrl` and optional `externalLabel` frontmatter.
 
 **New blog post or lesson:** create the markdown file in the appropriate `content/` subdirectory with the correct frontmatter — the route is automatic.
 
