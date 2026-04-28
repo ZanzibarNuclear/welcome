@@ -11,6 +11,10 @@ const { data: posts } = await useAsyncData('blog-posts', async () => {
 const { data: indexPage } = await useAsyncData('blog-index', () => {
   return queryCollection('content').path('/blog').first()
 })
+
+useHead({
+  title: indexPage.value?.title
+})
 </script>
 
 <template>

@@ -3,6 +3,10 @@
 const { data: indexPage } = await useAsyncData('simulators-index', () => {
   return queryCollection('content').path('/simulators').first()
 })
+
+useHead({
+  title: indexPage.value?.title
+})
 </script>
 
 <template>

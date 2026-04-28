@@ -1,5 +1,9 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'no-sidebar' })
+
+useHead({
+  title: 'Atomic Ambitions'
+})
 </script>
 
 <template>

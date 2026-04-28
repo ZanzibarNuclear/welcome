@@ -2,6 +2,13 @@
 const { data: page } = await useAsyncData('policies', () => {
   return queryCollection('content').path('/pages/policies').first()
 })
+
+useHead({
+  title: page.value?.title,
+  meta: [
+    { name: 'description', content: page.value?.description }
+  ]
+})
 </script>
 
 <template>

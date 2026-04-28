@@ -13,6 +13,10 @@ const { data: indexPage } = await useAsyncData('reactors-index', () => {
   return queryCollection('content').path('/reactors').first()
 })
 
+useHead({
+  title: indexPage.value?.title
+})
+
 type Reactor = NonNullable<typeof reactors.value>[number]
 
 const reactorsByGeneration = computed(() => {

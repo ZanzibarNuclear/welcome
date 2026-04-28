@@ -16,6 +16,10 @@ const { data: indexPage } = await useAsyncData('lessons-index', () => {
   return queryCollection('content').path('/lessons').first()
 })
 
+useHead({
+  title: indexPage.value?.title
+})
+
 const lessonsBySeries = computed(() => {
   if (!lessons.value) return {}
 
