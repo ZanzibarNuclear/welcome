@@ -57,7 +57,7 @@ to="/simulators/isotope-explorer"
             Isotope Explorer
           </h2>
           <p class="leading-relaxed text-gray-600 dark:text-gray-400">
-            Learn how to compare isotopes, stability, and decay patterns before launching the full explorer.
+            Learn about isotopes and how they change.
           </p>
         </div>
         <span class="mt-8 font-semibold text-primary-600 dark:text-primary-400">

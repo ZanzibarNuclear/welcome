@@ -87,7 +87,7 @@ v-if="externalUrl"
             Open {{ simulator.title }}
           </h2>
           <p class="mt-2 text-gray-600 dark:text-gray-300">
-            The interactive simulator opens in a dedicated experience on Atomic Ambitions.
+            Learn about isotopes and how they change.
           </p>
         </div>
         <UButton

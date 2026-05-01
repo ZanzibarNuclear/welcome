@@ -4,7 +4,7 @@ title: "Isotope Explorer"
 externalUrl: "https://isotopes.atomicambitions.com"
 externalLabel: "Launch Explorer"
 difficulty: beginner
-description: "Learn how to use the Atomic Ambitions isotope explorer to compare isotopes, stability, and decay patterns."
+description: "Find out how alchemy really works."
 tags: [isotopes, nuclear-data, reference]
 featured: true
 ---
