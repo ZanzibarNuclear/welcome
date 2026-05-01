@@ -11,15 +11,43 @@ featured: true
 
 ## What You Can Do
 
-The isotope explorer is an interactive reference for seeing how atoms change when the number of neutrons changes. It is especially useful after learning that protons define the element, while neutrons define the isotope.
+- Pick an element, then one of its isotopes, or choose from a short list of well-known isotopes.
+- Step through the changes an isotope can go through.
+- For radioactive isotopes, you can make it decay.
+- You can add a neutron to any isotope to make a new isotope or make it split into two smaller isotopes.
+- See the chain of changes.
 
-Use this page as a quick guide before opening the full explorer.
+## What Are Isotopes?
 
-## How This Works
+Isotopes are atoms of the same element that have different numbers of neutrons. For example, carbon-12 and carbon-14 are both carbon, but carbon-14 has 2 more neutrons than carbon-12.
 
-1. **Pick a familiar element** such as carbon, hydrogen, uranium, or iodine.
-2. **Compare its isotopes** and notice how the proton count stays fixed while the neutron count changes.
-3. **Look for stable and radioactive versions** of the same element.
-4. **Check decay information** for unstable isotopes and ask what the nucleus is trying to become.
+<div class="isotope-image-grid">
+  <figure>
+    <img src="/images/simulators/carbon-12.svg" alt="Carbon-12 atom diagram showing 6 protons, 6 neutrons, and 6 electrons." />
+    <figcaption><strong>Carbon-12:</strong> 6 protons, 6 neutrons, and 6 electrons.</figcaption>
+  </figure>
+  <figure>
+    <img src="/images/simulators/carbon-14.svg" alt="Carbon-14 atom diagram showing 6 protons, 8 neutrons, and 6 electrons." />
+    <figcaption><strong>Carbon-14:</strong> 6 protons, 8 neutrons, and 6 electrons.</figcaption>
+  </figure>
+</div>
 
-When you are ready, launch the full explorer.
+Carbon-12 is stable. It does not decay. Carbon-14 is radioactive. It decays into nitrogen-14.
+
+<div class="isotope-decay-row">
+  <figure>
+    <img src="/images/simulators/carbon-14.svg" alt="Carbon-14 atom diagram before radioactive decay." />
+    <figcaption><strong>Carbon-14</strong></figcaption>
+  </figure>
+  <div class="isotope-decay-arrow" aria-label="decays into">&rarr;</div>
+  <figure>
+    <img src="/images/simulators/nitrogen-14.svg" alt="Nitrogen-14 atom diagram after carbon-14 decays." />
+    <figcaption><strong>Nitrogen-14</strong></figcaption>
+  </figure>
+</div>
+
+Many isotopes have an important role to play. We use Iodine-125 for medical imaging, Carbon-14 for determining the age of artifacts, and Uranium-235 for nuclear power. These are just a few examples.
+
+Play with the isotope explorer to get a feel for isotopes.
+
+[Launch Isotope Explorer](https://isotopes.atomicambitions.com)

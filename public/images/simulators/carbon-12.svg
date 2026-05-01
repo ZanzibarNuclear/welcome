@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Carbon-12 atom diagram</title>
+  <desc id="desc">A simple diagram of carbon-12 showing 6 protons, 6 neutrons, and 6 electrons.</desc>
+  <rect width="640" height="480" rx="32" fill="#f8fafc"/>
+  <circle cx="320" cy="240" r="168" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+  <circle cx="320" cy="240" r="92" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+
+  <g fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" text-anchor="middle">
+    <text x="320" y="58" font-size="34" font-weight="800">Carbon-12</text>
+    <text x="320" y="92" font-size="18">6 protons + 6 neutrons</text>
+  </g>
+
+  <g stroke="#0f172a" stroke-width="2">
+    <circle cx="285" cy="215" r="25" fill="#f97316"/>
+    <circle cx="322" cy="205" r="25" fill="#38bdf8"/>
+    <circle cx="356" cy="223" r="25" fill="#f97316"/>
+    <circle cx="270" cy="253" r="25" fill="#38bdf8"/>
+    <circle cx="306" cy="247" r="25" fill="#f97316"/>
+    <circle cx="342" cy="258" r="25" fill="#38bdf8"/>
+    <circle cx="374" cy="263" r="25" fill="#38bdf8"/>
+    <circle cx="291" cy="291" r="25" fill="#f97316"/>
+    <circle cx="329" cy="294" r="25" fill="#38bdf8"/>
+    <circle cx="363" cy="302" r="25" fill="#f97316"/>
+    <circle cx="318" cy="247" r="25" fill="#38bdf8"/>
+    <circle cx="335" cy="232" r="25" fill="#f97316"/>
+  </g>
+
+  <g fill="#ffffff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="800" text-anchor="middle" dominant-baseline="central">
+    <text x="285" y="215">p+</text>
+    <text x="322" y="205">n</text>
+    <text x="356" y="223">p+</text>
+    <text x="270" y="253">n</text>
+    <text x="306" y="247">p+</text>
+    <text x="342" y="258">n</text>
+    <text x="374" y="263">n</text>
+    <text x="291" y="291">p+</text>
+    <text x="329" y="294">n</text>
+    <text x="363" y="302">p+</text>
+    <text x="318" y="247">n</text>
+    <text x="335" y="232">p+</text>
+  </g>
+
+  <g fill="#2563eb" stroke="#ffffff" stroke-width="4">
+    <circle cx="320" cy="148" r="12"/>
+    <circle cx="320" cy="332" r="12"/>
+    <circle cx="201" cy="121" r="12"/>
+    <circle cx="439" cy="121" r="12"/>
+    <circle cx="201" cy="359" r="12"/>
+    <circle cx="439" cy="359" r="12"/>
+  </g>
+
+  <g fill="#334155" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" text-anchor="middle">
+    <text x="320" y="441">Neutral carbon has 6 electrons.</text>
+  </g>
+</svg>
