@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       title: 'Atomic Ambitions'
     }
   },
-  modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/eslint'],
+  modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/eslint', '@vercel/analytics'],
   css: ['~~/assets/css/main.css'],
   colorMode: {
     preference: 'dark',
