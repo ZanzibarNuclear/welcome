@@ -9,7 +9,7 @@ useHead({
 <template>
   <div>
     <!-- Hero Photo -->
-    <div class="w-full aspect-video bg-gray-200 dark:bg-gray-800">
+    <div class="mx-auto w-[87.5%] aspect-video bg-gray-200 dark:bg-gray-800">
       <img src="/images/e-buggy.jpg" alt="futuristic buggy" class="w-full h-full object-cover">
     </div>
 
