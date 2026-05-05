@@ -6,6 +6,7 @@ difficulty: beginner
 description: "This simulator features the Bohr model. See how an element changes as you add protons, neutrons, and electrons."
 tags: [atoms, elements, interactive]
 featured: true
+order: 1
 ---
 
 ## Ready to Experiment?

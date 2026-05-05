@@ -6,6 +6,7 @@ difficulty: beginner
 description: "Same controls as the Bohr-model builder, but electrons appear as overlapping probability clouds instead of orbiting points."
 tags: [atoms, elements, interactive, quantum]
 featured: false
+order: 3
 ---
 
 ## Probability clouds, not trajectories

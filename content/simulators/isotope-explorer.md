@@ -7,6 +7,7 @@ difficulty: beginner
 description: "Find out how alchemy really works."
 tags: [isotopes, nuclear-data, reference]
 featured: true
+order: 2
 ---
 
 ## What You Can Do

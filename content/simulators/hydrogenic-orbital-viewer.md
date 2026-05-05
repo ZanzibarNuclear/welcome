@@ -6,6 +6,7 @@ difficulty: intermediate
 description: "Explore hydrogen-like orbital lobes and nodal structure with a preset chooser and phase coloring."
 tags: [atoms, orbitals, quantum, visualization]
 featured: true
+order: 4
 ---
 
 ## What this viewer shows
