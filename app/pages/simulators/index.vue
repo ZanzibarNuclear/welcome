@@ -18,6 +18,30 @@ useHead({
 
     <div class="grid gap-6 md:grid-cols-2">
       <NuxtLink
+to="/simulators/hydrogenic-orbital-viewer"
+        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
+        <div>
+          <div class="mb-5 flex items-center justify-between">
+            <span
+              class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+              Intermediate
+            </span>
+            <UIcon name="i-heroicons-beaker" class="text-3xl text-primary-500" />
+          </div>
+          <h2
+            class="mb-3 text-2xl font-bold text-gray-900 transition group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+            Hydrogenic Orbital Viewer
+          </h2>
+          <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+            Inspect s, p, and d orbital slices with a chooser for lobes, nodes, and phase.
+          </p>
+        </div>
+        <span class="mt-8 font-semibold text-primary-600 dark:text-primary-400">
+          Open simulator
+        </span>
+      </NuxtLink>
+
+      <NuxtLink
 to="/simulators/build-an-atom-quantum"
         class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
         <div>
