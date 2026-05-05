@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 const route = useRoute()
 const slug = route.params.slug as string
 
@@ -22,8 +24,15 @@ useHead({
 
 // Import the simulator component dynamically if specified
 const simulatorComponentName = simulator.value.component
-const SimulatorComponent = simulatorComponentName
-  ? defineAsyncComponent(() => import(`../../components/simulators/${simulatorComponentName}.vue`).catch(() => null))
+const simulatorComponentLoaders = import.meta.glob<{ default: Component }>('../../components/simulators/*.vue')
+const simulatorComponentPath = simulatorComponentName
+  ? `../../components/simulators/${simulatorComponentName}.vue`
+  : null
+const simulatorLoader = simulatorComponentPath
+  ? simulatorComponentLoaders[simulatorComponentPath]
+  : null
+const SimulatorComponent = simulatorLoader
+  ? defineAsyncComponent(() => simulatorLoader().then((module) => module.default))
   : null
 
 const externalUrl = simulator.value.externalUrl
