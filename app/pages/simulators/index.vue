@@ -18,7 +18,31 @@ useHead({
 
     <div class="grid gap-6 md:grid-cols-2">
       <NuxtLink
-to="/simulators/build-an-atom"
+to="/simulators/build-an-atom-quantum"
+        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
+        <div>
+          <div class="mb-5 flex items-center justify-between">
+            <span
+              class="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 dark:bg-green-900/30 dark:text-green-300">
+              Beginner
+            </span>
+            <UIcon name="i-heroicons-sparkles" class="text-3xl text-primary-500" />
+          </div>
+          <h2
+            class="mb-3 text-2xl font-bold text-gray-900 transition group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+            Build an Atom (quantum)
+          </h2>
+          <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+            Same atom builder with electron probability clouds instead of Bohr orbits.
+          </p>
+        </div>
+        <span class="mt-8 font-semibold text-primary-600 dark:text-primary-400">
+          Open simulator
+        </span>
+      </NuxtLink>
+
+      <NuxtLink
+to="/simulators/build-an-atom-bohr"
         class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
         <div>
           <div class="mb-5 flex items-center justify-between">
@@ -30,10 +54,10 @@ to="/simulators/build-an-atom"
           </div>
           <h2
             class="mb-3 text-2xl font-bold text-gray-900 transition group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
-            Build an Atom
+            Build an Atom (Bohr)
           </h2>
           <p class="leading-relaxed text-gray-600 dark:text-gray-400">
-            Add protons, neutrons, and electrons to see how atoms become elements, isotopes, and ions.
+            Bohr-style orbits: add protons, neutrons, and electrons to see elements, isotopes, and ions.
           </p>
         </div>
         <span class="mt-8 font-semibold text-primary-600 dark:text-primary-400">

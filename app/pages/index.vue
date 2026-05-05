@@ -25,7 +25,7 @@ useHead({
           In a hurry? Check out the <NuxtLink
 to="/simulators/isotope-explorer"
             class="text-cherenkov-400 dark:text-cherenkov-300 underline">isotope explorer</NuxtLink> or <NuxtLink
-            to="/simulators/build-an-atom" class="text-cherenkov-400 dark:text-cherenkov-300 underline">atom builder.
+            to="/simulators/build-an-atom-bohr" class="text-cherenkov-400 dark:text-cherenkov-300 underline">atom builder.
           </NuxtLink>
         </p>
       </div>

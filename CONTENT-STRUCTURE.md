@@ -69,7 +69,7 @@ featured: true/false
 **Simulator Components:** Located in `app/components/simulators/`
 - Simulators may reference a Vue component that renders an embedded interactive experience
 - External simulators can omit `component` and use `externalUrl` instead
-- Example: `AtomBuilder.vue` for the "Build an Atom" simulator
+- Example: `AtomBuilderBohr.vue` for the "Atom Builder (Bohr)" simulator
 
 ### 4. **Reactors** (`/reactors`)
 Guides to different nuclear reactor designs and concepts.
@@ -127,7 +127,8 @@ app/
 │   └── about.vue, contact.vue, etc. # Corporate pages
 ├── components/
 │   ├── simulators/                  # Interactive simulator components
-│   │   └── AtomBuilder.vue
+│   │   ├── AtomBuilderBohr.vue
+│   │   └── AtomBuilderQuantum.vue
 │   ├── Header.vue
 │   ├── Navigation.vue
 │   └── Footer.vue
