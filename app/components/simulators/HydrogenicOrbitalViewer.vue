@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import * as THREE from 'three'
+import { MarchingCubes } from 'three/examples/jsm/objects/MarchingCubes.js'
 
 type OrbitalPreset = {
   id: string
@@ -8,15 +9,21 @@ type OrbitalPreset = {
   n: number
   l: number
   expression: string
+  defaultRange: number
+  defaultIsoResolution: number
+  defaultIsoThreshold: number
+  defaultSampleCount: number
   psi: (x: number, y: number, z: number) => number
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const threeHostRef = ref<HTMLDivElement | null>(null)
-const viewMode = ref<'3d' | '2d'>('3d')
+const viewMode = ref<'3d-iso' | '3d-points' | '2d'>('3d-iso')
 const resolution = ref(260)
 const range = ref(10)
 const sampleCount = ref(28000)
+const isoResolution = ref(36)
+const isoThreshold = ref(0.34)
 const showPhase = ref(true)
 const selectedPresetId = ref('2p_x')
 
@@ -27,6 +34,10 @@ const presets: OrbitalPreset[] = [
     n: 1,
     l: 0,
     expression: 'psi = (1/sqrt(pi)) * e^{-r}',
+    defaultRange: 8,
+    defaultIsoResolution: 34,
+    defaultIsoThreshold: 0.46,
+    defaultSampleCount: 22000,
     psi: (x, y, z) => {
       const r = Math.hypot(x, y, z)
       return Math.exp(-r) / Math.sqrt(Math.PI)
@@ -38,6 +49,10 @@ const presets: OrbitalPreset[] = [
     n: 2,
     l: 0,
     expression: 'psi = (1/(4*sqrt(2*pi))) * (2-r) * e^{-r/2}',
+    defaultRange: 12,
+    defaultIsoResolution: 40,
+    defaultIsoThreshold: 0.27,
+    defaultSampleCount: 30000,
     psi: (x, y, z) => {
       const r = Math.hypot(x, y, z)
       return ((2 - r) * Math.exp(-r / 2)) / (4 * Math.sqrt(2 * Math.PI))
@@ -49,6 +64,10 @@ const presets: OrbitalPreset[] = [
     n: 2,
     l: 1,
     expression: 'psi = (1/(4*sqrt(2*pi))) * x * e^{-r/2}',
+    defaultRange: 11,
+    defaultIsoResolution: 36,
+    defaultIsoThreshold: 0.35,
+    defaultSampleCount: 28000,
     psi: (x, y, z) => {
       const r = Math.hypot(x, y, z)
       return (x * Math.exp(-r / 2)) / (4 * Math.sqrt(2 * Math.PI))
@@ -60,6 +79,10 @@ const presets: OrbitalPreset[] = [
     n: 2,
     l: 1,
     expression: 'psi = (1/(4*sqrt(2*pi))) * y * e^{-r/2}',
+    defaultRange: 11,
+    defaultIsoResolution: 36,
+    defaultIsoThreshold: 0.35,
+    defaultSampleCount: 28000,
     psi: (x, y, z) => {
       const r = Math.hypot(x, y, z)
       return (y * Math.exp(-r / 2)) / (4 * Math.sqrt(2 * Math.PI))
@@ -71,6 +94,10 @@ const presets: OrbitalPreset[] = [
     n: 3,
     l: 2,
     expression: 'psi ~ (x*y) * e^{-r/3}',
+    defaultRange: 14,
+    defaultIsoResolution: 44,
+    defaultIsoThreshold: 0.28,
+    defaultSampleCount: 38000,
     psi: (x, y, z) => {
       const r = Math.hypot(x, y, z)
       return (x * y * Math.exp(-r / 3)) / 160
@@ -82,6 +109,10 @@ const presets: OrbitalPreset[] = [
     n: 3,
     l: 2,
     expression: 'psi ~ (x^2-y^2) * e^{-r/3}',
+    defaultRange: 14,
+    defaultIsoResolution: 44,
+    defaultIsoThreshold: 0.28,
+    defaultSampleCount: 38000,
     psi: (x, y, z) => {
       const r = Math.hypot(x, y, z)
       return ((x * x - y * y) * Math.exp(-r / 3)) / 180
@@ -93,10 +124,19 @@ const selectedPreset = computed(() => {
   return presets.find(preset => preset.id === selectedPresetId.value) ?? presets[0]!
 })
 
+function applyPresetDefaults(preset: OrbitalPreset) {
+  range.value = preset.defaultRange
+  isoResolution.value = preset.defaultIsoResolution
+  isoThreshold.value = preset.defaultIsoThreshold
+  sampleCount.value = preset.defaultSampleCount
+}
+
 let renderer: THREE.WebGLRenderer | null = null
 let scene: THREE.Scene | null = null
 let camera: THREE.PerspectiveCamera | null = null
-let points: THREE.Points | null = null
+let pointCloud: THREE.Points | null = null
+let isoPositive: MarchingCubes | null = null
+let isoNegative: MarchingCubes | null = null
 let frameId = 0
 let isDragging = false
 let pointerId: number | null = null
@@ -204,19 +244,33 @@ function initializeThree() {
   animate()
 }
 
-function clearOrbitalPoints() {
-  if (!scene || !points) return
-  scene.remove(points)
-  points.geometry.dispose()
-  ;(points.material as THREE.Material).dispose()
-  points = null
+function clearOrbitalObjects() {
+  if (!scene) return
+  if (pointCloud) {
+    scene.remove(pointCloud)
+    pointCloud.geometry.dispose()
+    ;(pointCloud.material as THREE.Material).dispose()
+    pointCloud = null
+  }
+  if (isoPositive) {
+    scene.remove(isoPositive)
+    isoPositive.geometry.dispose()
+    ;(isoPositive.material as THREE.Material).dispose()
+    isoPositive = null
+  }
+  if (isoNegative) {
+    scene.remove(isoNegative)
+    isoNegative.geometry.dispose()
+    ;(isoNegative.material as THREE.Material).dispose()
+    isoNegative = null
+  }
 }
 
-function drawOrbital3d() {
-  if (viewMode.value !== '3d') return
+function drawOrbital3dPoints() {
+  if (viewMode.value !== '3d-points') return
   initializeThree()
   if (!scene) return
-  clearOrbitalPoints()
+  clearOrbitalObjects()
 
   const preset = selectedPreset.value
   const span = range.value
@@ -270,8 +324,101 @@ function drawOrbital3d() {
     blending: THREE.AdditiveBlending
   })
 
-  points = new THREE.Points(geometry, material)
-  scene.add(points)
+  pointCloud = new THREE.Points(geometry, material)
+  scene.add(pointCloud)
+}
+
+function fillMarchingField(
+  target: MarchingCubes,
+  preset: OrbitalPreset,
+  span: number,
+  phase: 'positive' | 'negative' | 'all'
+) {
+  const size = target.size
+  const half = size / 2
+
+  let maxAbs = 0
+  for (let z = 0; z < size; z++) {
+    const fz = ((z - half) / half) * span
+    for (let y = 0; y < size; y++) {
+      const fy = ((y - half) / half) * span
+      for (let x = 0; x < size; x++) {
+        const fx = ((x - half) / half) * span
+        const psi = preset.psi(fx, fy, fz)
+        const abs = Math.abs(psi)
+        if (abs > maxAbs) maxAbs = abs
+      }
+    }
+  }
+
+  const norm = maxAbs || 1
+  const field = target.field
+  let i = 0
+  for (let z = 0; z < size; z++) {
+    const fz = ((z - half) / half) * span
+    for (let y = 0; y < size; y++) {
+      const fy = ((y - half) / half) * span
+      for (let x = 0; x < size; x++) {
+        const fx = ((x - half) / half) * span
+        const psi = preset.psi(fx, fy, fz)
+        const keep = phase === 'all'
+          || (phase === 'positive' && psi >= 0)
+          || (phase === 'negative' && psi < 0)
+        if (!keep) {
+          field[i++] = 0
+          continue
+        }
+        const normalized = Math.abs(psi) / norm
+        field[i++] = Math.min(1, normalized ** 1.25) * 100
+      }
+    }
+  }
+
+  target.isolation = isoThreshold.value * 100
+  target.update()
+}
+
+function drawOrbital3dIso() {
+  if (viewMode.value !== '3d-iso') return
+  initializeThree()
+  if (!scene) return
+  clearOrbitalObjects()
+
+  const preset = selectedPreset.value
+  const span = range.value
+  const res = isoResolution.value
+
+  const makeIsoMaterial = (color: number) => {
+    return new THREE.MeshStandardMaterial({
+      color,
+      transparent: true,
+      opacity: 0.72,
+      roughness: 0.2,
+      metalness: 0.05,
+      side: THREE.DoubleSide
+    })
+  }
+
+  if (showPhase.value) {
+    isoPositive = new MarchingCubes(res, makeIsoMaterial(0x4c8ff6), false, false, 60000)
+    isoNegative = new MarchingCubes(res, makeIsoMaterial(0xf2a04b), false, false, 60000)
+
+    isoPositive.position.set(0, 0, 0)
+    isoNegative.position.set(0, 0, 0)
+    isoPositive.scale.set(span, span, span)
+    isoNegative.scale.set(span, span, span)
+
+    fillMarchingField(isoPositive, preset, span, 'positive')
+    fillMarchingField(isoNegative, preset, span, 'negative')
+    scene.add(isoPositive)
+    scene.add(isoNegative)
+  } else {
+    isoPositive = new MarchingCubes(res, makeIsoMaterial(0xe6e6e6), false, false, 60000)
+    isoPositive.position.set(0, 0, 0)
+    isoPositive.scale.set(span, span, span)
+    fillMarchingField(isoPositive, preset, span, 'all')
+    scene.add(isoPositive)
+  }
 }
 
 function drawOrbital() {
@@ -371,22 +518,32 @@ function drawOrbital() {
 
 onMounted(drawOrbital)
 onMounted(() => {
-  if (viewMode.value === '3d') drawOrbital3d()
+  if (viewMode.value === '3d-points') drawOrbital3dPoints()
+  else if (viewMode.value === '3d-iso') drawOrbital3dIso()
   else drawOrbital()
 })
 
-watch([selectedPresetId, resolution, range, showPhase, viewMode], () => {
-  if (viewMode.value === '3d') drawOrbital3d()
+watch([selectedPresetId, resolution, range, showPhase, viewMode, isoResolution, isoThreshold], () => {
+  if (viewMode.value === '3d-points') drawOrbital3dPoints()
+  else if (viewMode.value === '3d-iso') drawOrbital3dIso()
   else drawOrbital()
 })
+
+watch(
+  selectedPreset,
+  (preset) => {
+    applyPresetDefaults(preset)
+  },
+  { immediate: true }
+)
 
 watch(sampleCount, () => {
-  if (viewMode.value === '3d') drawOrbital3d()
+  if (viewMode.value === '3d-points') drawOrbital3dPoints()
 })
 
 onBeforeUnmount(() => {
   if (frameId) window.cancelAnimationFrame(frameId)
-  clearOrbitalPoints()
+  clearOrbitalObjects()
   if (renderer) {
     renderer.dispose()
     renderer.forceContextLoss()
@@ -433,7 +590,8 @@ onBeforeUnmount(() => {
         <select
           v-model="viewMode"
           class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-          <option value="3d">3D point cloud</option>
+          <option value="3d-iso">3D isosurface mesh</option>
+          <option value="3d-points">3D point cloud</option>
           <option value="2d">2D cross-section (z = 0)</option>
         </select>
       </label>
@@ -452,7 +610,9 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="grid gap-4 md:grid-cols-2">
-      <label class="space-y-2">
+      <label
+        v-show="viewMode === '3d-points'"
+        class="space-y-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300">3D samples</span>
         <input
           v-model.number="sampleCount"
@@ -463,6 +623,33 @@ onBeforeUnmount(() => {
           class="w-full">
         <div class="text-xs text-gray-500 dark:text-gray-400">{{ sampleCount.toLocaleString() }} points tested</div>
       </label>
+
+      <div
+        v-show="viewMode === '3d-iso'"
+        class="grid gap-3">
+        <label class="space-y-2">
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Isosurface grid</span>
+          <input
+            v-model.number="isoResolution"
+            type="range"
+            min="24"
+            max="52"
+            step="2"
+            class="w-full">
+          <div class="text-xs text-gray-500 dark:text-gray-400">{{ isoResolution }}^3 samples</div>
+        </label>
+        <label class="space-y-2">
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Isovalue threshold</span>
+          <input
+            v-model.number="isoThreshold"
+            type="range"
+            min="0.16"
+            max="0.62"
+            step="0.02"
+            class="w-full">
+          <div class="text-xs text-gray-500 dark:text-gray-400">{{ isoThreshold.toFixed(2) }}</div>
+        </label>
+      </div>
 
       <label class="flex items-center gap-2 rounded-md border border-gray-200 p-3 text-sm text-gray-700 dark:border-gray-700 dark:text-gray-300">
         <input
@@ -482,13 +669,13 @@ onBeforeUnmount(() => {
     </div>
 
     <div
-      v-show="viewMode === '3d'"
+      v-show="viewMode === '3d-points' || viewMode === '3d-iso'"
       class="rounded-xl border border-gray-200 bg-gray-950/95 p-4 dark:border-gray-800">
       <div
         ref="threeHostRef"
         class="mx-auto h-[460px] w-full max-w-[680px] overflow-hidden rounded-md border border-gray-700 bg-gray-950 shadow-lg" />
       <p class="mt-2 text-xs text-gray-400">
-        Drag to orbit. Scroll to zoom. The shape is drawn from sampled |psi| with a threshold to highlight lobes.
+        Drag to orbit. Scroll to zoom. Isosurface mode uses marching cubes; point mode uses sampled density points.
       </p>
     </div>
 
