@@ -24,9 +24,7 @@ export default defineContentConfig({
         moderator: z.string().optional(),
         fuel: z.string().optional(),
         status: z.string().optional(),
-        component: z.string().optional(),
-        externalUrl: z.string().url().optional(),
-        externalLabel: z.string().optional()
+        component: z.string().optional()
       })
     })
   }

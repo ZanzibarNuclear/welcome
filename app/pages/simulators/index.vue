@@ -63,7 +63,7 @@ useHead({
           </p>
         </div>
         <span class="mt-8 font-semibold text-primary-600 dark:text-primary-400">
-          {{ simulator.externalUrl ? 'View guide' : 'Open simulator' }}
+          Open simulator
         </span>
       </NuxtLink>
     </div>

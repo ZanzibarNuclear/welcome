@@ -1,22 +1,13 @@
 ---
 type: simulator
 title: "Isotope Explorer"
-externalUrl: "https://isotopes.atomicambitions.com"
-externalLabel: "Launch Explorer"
-difficulty: beginner
-description: "Find out how alchemy really works."
+component: "IsotopeExplorer"
+difficulty: intermediate
+description: "See how alchemy works. Push atoms through transformations."
 tags: [isotopes, nuclear-data, reference]
 featured: true
 order: 2
 ---
-
-## What You Can Do
-
-- Pick an element, then one of its isotopes, or choose from a short list of well-known isotopes.
-- Step through the changes an isotope can go through.
-- For radioactive isotopes, you can make it decay.
-- You can add a neutron to any isotope to make a new isotope or make it split into two smaller isotopes.
-- See the chain of changes.
 
 ## What Are Isotopes?
 
@@ -49,6 +40,14 @@ Carbon-12 is stable. It does not decay. Carbon-14 is radioactive. It decays into
 
 Many isotopes have an important role to play. We use Iodine-125 for medical imaging, Carbon-14 for determining the age of artifacts, and Uranium-235 for nuclear power. These are just a few examples.
 
+## What You Can Do
+
 Play with the isotope explorer to get a feel for isotopes.
+
+- Pick an element, then one of its isotopes, or choose from a short list of well-known isotopes.
+- Step through the changes an isotope can go through.
+- For radioactive isotopes, you can make it decay.
+- You can add a neutron to any isotope to make a new isotope or make it split into two smaller isotopes.
+- See the chain of changes.
 
 [Launch Isotope Explorer](https://isotopes.atomicambitions.com)
