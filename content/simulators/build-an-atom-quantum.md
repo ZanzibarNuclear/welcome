@@ -9,11 +9,17 @@ featured: false
 order: 3
 ---
 
-## Probability clouds, not trajectories
+## Probability clouds, not orbits
 
-In quantum mechanics, electrons do not follow planetary orbits. They are described by orbitals: regions where the electron is likely to be found. This simulator uses **soft, layered clouds** as a schematic stand-in for that idea.
+In quantum mechanics, electrons do not follow planetary-style orbits. They are described by orbitals: regions where the electron is likely to be found. This simulator uses **soft, layered clouds** as a schematic stand-in for that idea.
 
 It is **not** a plot of real hydrogen orbitals (s, p, d, f lobes). It keeps the same **shell filling** rules as the classical Bohr-style builder so you can still explore atomic number, isotopes, and ions.
+
+Frankly, this view is less informative than the Bohr model. Then again, it is strikingly similar to how an atom really looks.
+
+<p align="center">
+  <img src="/images/quantum-image-of-real-atom.webp" alt="Quantum image of a real atom" style="width: 50%; display: block; margin: 0 auto;">
+</p>
 
 ## How to use
 

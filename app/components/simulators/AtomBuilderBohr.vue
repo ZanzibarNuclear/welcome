@@ -44,6 +44,53 @@ const electronShells = computed(() => getElectronShells(protons.value, electrons
 
 const SHELL_INNER = 180
 const SHELL_OUTER = 460
+const NUCLEUS_RADIUS = 34
+const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5))
+
+type Nucleon = {
+  id: number
+  type: 'proton' | 'neutron'
+  x: number
+  y: number
+  z: number
+  size: number
+  opacity: number
+}
+
+const isProtonAtIndex = (index: number, total: number, protonCount: number) => {
+  if (total === 0) return false
+  return ((index * 37) % total) < protonCount
+}
+
+const nucleons = computed<Nucleon[]>(() => {
+  const total = protons.value + neutrons.value
+  if (total === 0) return []
+
+  const particles = Array.from({ length: total }, (_, i) => {
+    const t = (i + 0.5) / total
+    const theta = i * GOLDEN_ANGLE
+    const phi = Math.acos(1 - 2 * t)
+    const radiusFactor = 0.38 + 0.62 * (((i * 53) % 101) / 100)
+
+    const x = radiusFactor * Math.sin(phi) * Math.cos(theta)
+    const y = radiusFactor * Math.sin(phi) * Math.sin(theta)
+    const z = radiusFactor * Math.cos(phi)
+
+    const nucleonType: Nucleon['type'] = isProtonAtIndex(i, total, protons.value) ? 'proton' : 'neutron'
+
+    return {
+      id: i,
+      type: nucleonType,
+      x: x * NUCLEUS_RADIUS,
+      y: y * NUCLEUS_RADIUS,
+      z,
+      size: 8 + (z + 1) * 4,
+      opacity: 0.58 + (z + 1) * 0.18
+    }
+  })
+
+  return particles.sort((a, b) => a.z - b.z)
+})
 
 const shellDiameter = (idx: number) => {
   const n = electronShells.value.length
@@ -99,11 +146,27 @@ const reset = () => {
         </div>
 
         <!-- Nucleus -->
-        <div
-          class="relative w-32 h-32 rounded-full bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg z-10">
-          <div class="text-white text-center">
-            <div class="text-xs font-semibold">Nucleus</div>
-            <div class="text-2xl font-bold">{{ protons + neutrons }}</div>
+        <div class="relative w-36 h-36 flex items-center justify-center z-10">
+          <div class="absolute inset-0 rounded-full bg-linear-to-br from-primary-200/60 to-primary-500/50 dark:from-primary-900/40 dark:to-primary-700/45 blur-[1px]" />
+          <div
+            v-for="nucleon in nucleons"
+            :key="nucleon.id"
+            class="absolute rounded-full border shadow-sm"
+            :class="nucleon.type === 'proton'
+              ? 'border-red-300/70 bg-radial-[at_30%_30%] from-red-300 to-red-600 dark:border-red-300/30 dark:from-red-300 dark:to-red-700'
+              : 'border-sky-300/70 bg-radial-[at_30%_30%] from-sky-200 to-sky-600 dark:border-sky-300/30 dark:from-sky-200 dark:to-sky-700'"
+            :style="{
+              width: `${nucleon.size}px`,
+              height: `${nucleon.size}px`,
+              opacity: nucleon.opacity,
+              left: `calc(50% + ${nucleon.x}px)`,
+              top: `calc(50% + ${nucleon.y}px)`,
+              transform: 'translate(-50%, -50%)'
+            }" />
+          <div class="absolute -bottom-7 text-center">
+            <div class="rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">
+              Nucleus: {{ protons + neutrons }}
+            </div>
           </div>
         </div>
       </div>
