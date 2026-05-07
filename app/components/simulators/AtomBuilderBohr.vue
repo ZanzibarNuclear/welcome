@@ -89,7 +89,12 @@ const nucleons = computed<Nucleon[]>(() => {
     }
   })
 
-  return particles.sort((a, b) => a.z - b.z)
+  const meanX = particles.reduce((s, p) => s + p.x, 0) / total
+  const meanY = particles.reduce((s, p) => s + p.y, 0) / total
+
+  return particles
+    .map((p) => ({ ...p, x: p.x - meanX, y: p.y - meanY }))
+    .sort((a, b) => a.z - b.z)
 })
 
 const shellDiameter = (idx: number) => {
