@@ -2,6 +2,10 @@
 import { computed, ref } from 'vue'
 import { GRAVITY_MS2, hydraulicPowerWatts } from '~~/utils/fluidMechanics'
 
+function clamp(n: number, lo: number, hi: number) {
+  return Math.min(hi, Math.max(lo, n))
+}
+
 /** Coolant density presets (kg/m³) for quick comparison; default liquid water ~20 °C. */
 const rho = ref(998.2)
 
@@ -31,6 +35,17 @@ const headLossFraction = computed(() => {
 
 const svgDamX = 72
 const svgWaterTop = 22
+
+/** Penstock dash animation: higher Q → faster (schematic only). */
+const hydroPenstockAnimSec = computed(() => {
+  const Q = Math.max(flowM3s.value, 0.25)
+  return clamp(55 / Q, 0.35, 14)
+})
+
+/** Subtle pulse on the powerhouse when exporting power. */
+const hydroGenPulseSec = computed(() =>
+  clamp(2.8 / Math.max(powerShaftMw.value, 0.05), 0.45, 5)
+)
 </script>
 
 <template>
@@ -57,7 +72,8 @@ const svgWaterTop = 22
           :d="`M ${svgDamX - 40} ${svgWaterTop - 8} H 200 V 170 H ${svgDamX - 40} Z`"
           fill="url(#waterFill)"
           stroke="currentColor"
-          stroke-opacity="0.25" />
+          stroke-opacity="0.25"
+          class="hydro-reservoir-shimmer" />
 
         <path
           :d="`M ${svgDamX} 40 L ${svgDamX + 58} 40 L ${svgDamX + 42} 175 L ${svgDamX - 18} 175 Z`"
@@ -71,9 +87,10 @@ const svgWaterTop = 22
           width="120"
           height="38"
           rx="6"
-          class="fill-gray-200/90 dark:fill-gray-800/90"
+          class="hydro-generator-pulse fill-gray-200/90 dark:fill-gray-800/90"
           stroke="currentColor"
-          stroke-opacity="0.35" />
+          stroke-opacity="0.35"
+          :style="{ '--hydro-gen-dur': `${hydroGenPulseSec}s` }" />
         <text x="315" y="141" text-anchor="middle" class="fill-gray-700 text-[11px] dark:fill-gray-200">
           Generator / grid
         </text>
@@ -88,10 +105,11 @@ const svgWaterTop = 22
         <path
           d="M 132 52 L 248 118"
           fill="none"
-          class="stroke-sky-500/70 dark:stroke-sky-400/70"
+          class="hydro-penstock-flow stroke-sky-500/70 dark:stroke-sky-400/70"
           stroke-width="2.5"
           stroke-dasharray="10 8"
-          stroke-linecap="round" />
+          stroke-linecap="round"
+          :style="{ '--hydro-penstock-dur': `${hydroPenstockAnimSec}s` }" />
 
         <text x="175" y="98" class="fill-gray-600 text-[10px] dark:fill-gray-400">Penstock</text>
         <text x="24" y="24" class="fill-gray-600 text-[11px] dark:fill-gray-400">Reservoir</text>
@@ -220,6 +238,61 @@ const svgWaterTop = 22
     <p class="text-xs text-gray-500 dark:text-gray-400">
       g = {{ GRAVITY_MS2 }} m/s². This is a 1D energy accounting model: combine penstock friction, valve, and draft-tube losses into ΣhL.
       Real plants have turbine hill charts and time-varying head; Phase 2+ can link penstock loss to the pipe simulator.
+      Schematic motion hints at flow and output, not a hydraulic time-domain solve.
     </p>
   </div>
 </template>
+
+<style scoped>
+/* 10 + 8 = 18 dash cycle length — seamless loop */
+@keyframes hydro-penstock-dash {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+.hydro-penstock-flow {
+  animation: hydro-penstock-dash linear infinite;
+  animation-duration: var(--hydro-penstock-dur, 2s);
+}
+
+@keyframes hydro-reservoir-shimmer {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.92;
+  }
+}
+
+.hydro-reservoir-shimmer {
+  animation: hydro-reservoir-shimmer 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes hydro-generator-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.hydro-generator-pulse {
+  animation: hydro-generator-pulse ease-in-out infinite;
+  animation-duration: var(--hydro-gen-dur, 2s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hydro-penstock-flow,
+  .hydro-reservoir-shimmer,
+  .hydro-generator-pulse {
+    animation: none !important;
+  }
+}
+</style>
