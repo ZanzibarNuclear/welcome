@@ -5,7 +5,7 @@ component: "HydroPowerSimulator"
 difficulty: beginner
 description: "Estimate hydraulic and electric power from gross head, lumped losses, flow rate, and overall efficiency—simple 1D energy accounting for dams and stations."
 tags: [fluids, hydropower, energy, civil]
-order: 6
+order: 5
 ---
 
 ## What this models
@@ -13,7 +13,7 @@ order: 6
 Hydraulic power available from converting fluid potential energy at the **net head** is
 
 \[
-P_\text{hyd} = \rho g Q H_\text{net}.
+P*\text{hyd} = \rho g Q H*\text{net}.
 \]
 
 You enter **gross head** (reservoir to turbine inlet datum), a lumped **head loss** (penstock friction, trash racks, bends, draft tube, etc.), **volume flow** through the turbines, fluid **density**, and an **overall efficiency** \(\eta\) (turbine × generator and ancillary losses). The sketchpad reports **shaft/electric power** and a **daily energy** estimate at constant \(Q\) and \(\eta\).
