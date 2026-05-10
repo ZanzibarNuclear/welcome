@@ -24,6 +24,7 @@ const simulatorIcon = (path?: string) => {
   if (path.includes('build-an-atom-quantum')) return 'i-heroicons-sparkles'
   if (path.includes('isotope-explorer')) return 'i-heroicons-arrow-top-right-on-square'
   if (path.includes('hydrogenic-orbital-viewer')) return 'i-heroicons-beaker'
+  if (path.includes('pipe-flow-laminar')) return 'i-heroicons-funnel'
   if (path.includes('pipe-flow')) return 'i-heroicons-arrows-right-left'
   if (path.includes('hydro-power')) return 'i-heroicons-bolt'
   return 'i-heroicons-beaker'

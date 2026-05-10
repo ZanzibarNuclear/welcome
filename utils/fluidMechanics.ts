@@ -66,6 +66,35 @@ export function pipeCrossSectionArea(diameterM: number) {
   return Math.PI * r * r
 }
 
+/**
+ * Hagen–Poiseuille: pressure drop (Pa) for steady, fully developed laminar flow in a circular pipe.
+ * Q in m³/s, μ in Pa·s, L and D in meters. Δp = 128 μ L Q / (π D⁴).
+ */
+export function pressureDropHagenPoiseuille(
+  Qm3s: number,
+  muPas: number,
+  lengthM: number,
+  diameterM: number
+) {
+  const D = Math.max(diameterM, 1e-12)
+  const L = Math.max(lengthM, 1e-12)
+  return (128 * muPas * L * Math.max(Qm3s, 0)) / (Math.PI * D ** 4)
+}
+
+/**
+ * Volume flow (m³/s) from pressure drop (Pa) under Hagen–Poiseuille (inverse of `pressureDropHagenPoiseuille`).
+ */
+export function volumeFlowHagenPoiseuille(
+  deltaPa: number,
+  muPas: number,
+  lengthM: number,
+  diameterM: number
+) {
+  const D = Math.max(diameterM, 1e-12)
+  const L = Math.max(lengthM, 1e-12)
+  return (Math.PI * D ** 4 * Math.max(deltaPa, 0)) / (128 * muPas * L)
+}
+
 /** Upper end of the laminar band in `darcyFrictionFactor` (engineering convention ~2300; we use 2100). */
 export const REYNOLDS_LAMINAR_UPPER = 2100
 

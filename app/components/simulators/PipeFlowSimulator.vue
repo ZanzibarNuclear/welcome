@@ -43,8 +43,8 @@ const tempC = ref(40)
 const diameterM = ref(DEFAULT_PIPE_DIAMETER_M)
 const lengthM = ref(80)
 const roughnessMm = ref(0.045)
-/** Sum of minor-loss coefficients ΣK (elbows, fittings, entrances, etc.). */
-const sumKMinor = ref(0)
+/** Fixed ΣK (elbows, fittings, entrances); typical small piping run, not user-tuned. */
+const SUM_K_MINOR = 2.5
 
 /** Drive by volume flow (L/s) or mean velocity (m/s). */
 const driveBy = ref<'Q' | 'v'>('Q')
@@ -141,6 +141,15 @@ watch(driveBy, (mode, prev) => {
   }
 })
 
+/** Keep the same Q (L/s) when D changes in Q mode so Re, v, and losses respond to geometry (slider is Re-keyed). */
+watch(diameterM, (newD, oldD) => {
+  if (oldD === undefined || driveBy.value !== 'Q') return
+  const epOld = qSliderEndpoints(rho.value, mu.value, oldD)
+  const qLs = flowLsFromSliderNorm(flowSlider.value / FLOW_SLIDER_STEPS, epOld)
+  const epNew = qSliderEndpoints(rho.value, mu.value, newD)
+  flowSlider.value = sliderFromFlowLs(qLs, epNew)
+})
+
 const roughnessM = computed(() => roughnessMm.value / 1000)
 
 const relativeRoughness = computed(() => roughnessM.value / Math.max(diameterM.value, 1e-12))
@@ -151,7 +160,7 @@ const pipeLossParams = computed<PipeLossParams>(() => ({
   diameterM: diameterM.value,
   lengthM: lengthM.value,
   roughnessM: roughnessM.value,
-  Kminor: sumKMinor.value
+  Kminor: SUM_K_MINOR
 }))
 
 /** Simple pump H = H₀ − k Q² (Q in m³/s); k in s²/m⁵. */
@@ -185,16 +194,14 @@ const headLossPipeM = computed(() =>
   )
 )
 
-const headLossMinorM = computed(() => headLossMinor(sumKMinor.value, velocity.value))
+const headLossMinorM = computed(() => headLossMinor(SUM_K_MINOR, velocity.value))
 
 const headLossTotalM = computed(() => headLossPipeM.value + headLossMinorM.value)
 
 const deltaPa = computed(() => pressureDropFromHead(rho.value, headLossTotalM.value))
 
 const equivalentLengthMinorM = computed(() =>
-  sumKMinor.value > 0
-    ? equivalentLengthForMinorLoss(sumKMinor.value, diameterM.value, friction.value.f)
-    : 0
+  equivalentLengthForMinorLoss(SUM_K_MINOR, diameterM.value, friction.value.f)
 )
 
 const pumpHeadAtQM = computed(() =>
@@ -339,15 +346,19 @@ const streamlinePaths = computed(() => {
     </div>
 
     <div class="grid gap-4 md:grid-cols-2">
-      <label class="space-y-2">
+      <div class="space-y-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Fluid</span>
-        <select
-          v-model="fluid"
-          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-          <option value="water">Water (liquid)</option>
-          <option value="sodium">Molten sodium (liquid)</option>
-        </select>
-      </label>
+        <div class="flex flex-col gap-2" role="radiogroup" aria-label="Fluid">
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <input v-model="fluid" type="radio" value="water" class="h-4 w-4 rounded border-gray-400">
+            Water (liquid)
+          </label>
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <input v-model="fluid" type="radio" value="sodium" class="h-4 w-4 rounded border-gray-400">
+            Molten sodium (liquid)
+          </label>
+        </div>
+      </div>
 
       <label class="space-y-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Temperature (°C)</span>
@@ -364,7 +375,7 @@ const streamlinePaths = computed(() => {
       </label>
 
       <label class="space-y-2">
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Inner diameter D (m)</span>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Inner diameter D (mm)</span>
         <input
           v-model.number="diameterM"
           type="range"
@@ -402,24 +413,18 @@ const streamlinePaths = computed(() => {
         </div>
       </label>
 
-      <label class="space-y-2 md:col-span-2">
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Minor losses ΣK (dimensionless)</span>
-        <input
-          v-model.number="sumKMinor"
-          type="range"
-          min="0"
-          max="18"
-          step="0.25"
-          class="w-full">
+      <div class="space-y-2 md:col-span-2">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Minor losses ΣK (fixed)</span>
         <div class="text-xs text-gray-500 dark:text-gray-400">
-          ΣK = {{ sumKMinor.toFixed(2) }} · extra head
+          ΣK = {{ SUM_K_MINOR.toFixed(1) }} (typical elbows/fittings) · extra head
           {{ headLossMinorM.toFixed(3) }} m · equivalent pipe length (at current f) ≈
           {{ equivalentLengthMinorM.toFixed(2) }} m
         </div>
         <p class="text-[11px] leading-snug text-gray-500 dark:text-gray-400">
-          Add elbows, valves, and fittings as loss coefficients. Total head = straight-pipe Darcy–Weisbach + ΣK v²/(2g).
+          Total head = straight-pipe Darcy–Weisbach + ΣK v²/(2g). This lab holds ΣK constant so the readouts stay
+          focused on pipe flow and roughness.
         </p>
-      </label>
+      </div>
     </div>
 
     <div class="flex flex-wrap gap-3 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
@@ -490,6 +495,19 @@ const streamlinePaths = computed(() => {
         </p>
       </div>
       <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+        <div class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Q · mean v</div>
+        <div class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+          {{ velocity < 0.1 ? velocity.toFixed(3) : velocity.toFixed(2) }} m/s
+        </div>
+        <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          Q =
+          {{
+            Qm3s * 1000 < 10 ? (Qm3s * 1000).toFixed(2) : (Qm3s * 1000).toFixed(1)
+          }}
+          L/s · v = Q / A, Re = ρ v D / μ
+        </div>
+      </div>
+      <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
         <div class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Darcy f</div>
         <div class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
           {{ friction.f.toFixed(4) }}
@@ -500,6 +518,9 @@ const streamlinePaths = computed(() => {
         <div class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
           {{ headLossPipeM.toFixed(2) }} m
         </div>
+        <p class="mt-2 text-[11px] leading-snug text-gray-500 dark:text-gray-400">
+          Darcy–Weisbach: f × (L/D) × v²/(2g). Length and diameter both enter here; minor loss uses only v.
+        </p>
       </div>
       <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
         <div class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Minor hf (ΣK)</div>
