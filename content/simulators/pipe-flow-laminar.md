@@ -1,10 +1,10 @@
 ---
 type: simulator
-title: "Laminar Pipe Flow (Hagen–Poiseuille)"
+title: "Laminar Pipe Flow"
 component: "PipeFlowLaminarSimulator"
 difficulty: beginner
-description: "The simplest round-pipe model: steady laminar flow, parabolic profile, and Δp from viscosity, length, flow rate, and diameter—no friction-factor charts."
-tags: [fluids, hydraulics, pipe-flow-series, reactor-coolant]
+description: "The simplest model of fluid flowing smoothly through a pipe."
+tags: [fluids, hydraulics, pipe-flow]
 series: "Pipe flow"
 order: 6
 ---
