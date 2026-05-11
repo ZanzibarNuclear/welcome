@@ -9,6 +9,66 @@ import {
   volumeFlowForReynolds,
 } from "~~/utils/fluidMechanics";
 
+/**
+ * Select options only—order-of-magnitude labels (not as-built routing).
+ * 5–80 m in 5 m steps.
+ */
+const PIPE_LENGTH_OPTIONS: { m: number; note: string }[] = [
+  {
+    m: 5,
+    note: "Short rack straight: a few supports; tie-in between nearby valves",
+  },
+  {
+    m: 10,
+    note: "One wide structural bay; short run inside a turbine or auxiliary hall",
+  },
+  {
+    m: 20,
+    note: "Typical run between two major skids (e.g. pump to nearby heat exchanger)",
+  },
+  {
+    m: 30,
+    note: "Long in-building header; several pipe-rack modules end-to-end",
+  },
+  {
+    m: 40,
+    note: "Multi-turn routing in one large building before heading outdoors",
+  },
+  {
+    m: 50,
+    note: "Long tunnel / trench straight; half a football-field scale on the ground",
+  },
+  {
+    m: 60,
+    note: "Extended yard routing on one rack before a major elevation or turn",
+  },
+  {
+    m: 70,
+    note: "Large outdoor pipe-bridge or rack section across part of a site",
+  },
+  {
+    m: 80,
+    note: "Upper end of this lab—very long buried or yard run",
+  },
+];
+
+/** Always show Δp in Pa with enough digits that small changes stay visible. */
+function formatPressureDropPa(pa: number): string {
+  if (!Number.isFinite(pa)) return "—";
+  const a = Math.abs(pa);
+  if (a >= 1000)
+    return `${Math.round(pa).toLocaleString(undefined, { maximumFractionDigits: 0 })} Pa`;
+  if (a >= 100)
+    return `${pa.toLocaleString(undefined, { maximumFractionDigits: 1 })} Pa`;
+  if (a >= 10)
+    return `${pa.toLocaleString(undefined, { maximumFractionDigits: 2 })} Pa`;
+  if (a >= 1)
+    return `${pa.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 3 })} Pa`;
+  if (a >= 0.01)
+    return `${pa.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} Pa`;
+  return `${pa.toLocaleString(undefined, { maximumFractionDigits: 6 })} Pa`;
+}
+
 /** Fixed teaching values: liquid water at 40 °C (site ρ, μ tables). */
 const WATER_TEMP_C = 40;
 
@@ -19,11 +79,7 @@ const WATER_TEMP_C = 40;
 const DIAMETER_PRESETS = [
   { id: "sg-tube", mm: 15, label: "Steam generator heat-exchanger tube" },
   { id: "service", mm: 40, label: "Small process branch / drain line" },
-  {
-    id: "aux-steam",
-    mm: 100,
-    label: "Auxiliary steam or chemical-feed header",
-  },
+  { id: "aux-steam", mm: 100, label: "Chemical feed header" },
   { id: "feedwater", mm: 250, label: "Main feedwater" },
   { id: "main-steam", mm: 400, label: "Main steam header" },
   { id: "primary-loop", mm: 700, label: "Primary loop hot / cold leg" },
@@ -43,7 +99,7 @@ const lengthM = ref(20);
 
 const Q_SLIDER_STEPS = 1000;
 /** 0 … this fraction of the bar: Q from 0 up to laminar-cap flow; remainder: up to `RE_SLIDER_EXTEND`. */
-const Q_SLIDER_LAMINAR_FRACTION = 0.9;
+const Q_SLIDER_LAMINAR_FRACTION = 0.75;
 /** Top of the last slider segment: transitional / early turbulent onset (formula still shown, with warning). */
 const RE_SLIDER_EXTEND = 4000;
 
@@ -105,8 +161,6 @@ const deltaPa = computed(() =>
     diameterM.value,
   ),
 );
-
-const laminarAssumptionOk = computed(() => Re.value <= REYNOLDS_LAMINAR_UPPER);
 </script>
 
 <template>
@@ -160,103 +214,86 @@ const laminarAssumptionOk = computed(() => Re.value <= REYNOLDS_LAMINAR_UPPER);
       </svg>
       <figcaption
         class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-        <span class="font-medium text-gray-800 dark:text-gray-200"
-          >End view</span
-        >
-        End view of a round pipe. The circle is the pipe wall. The dashed line
-        is the diameter. The blue curve shows the relative speed of fluid: 0 m/s
-        at the pipe wall, fastest at the center.
+        <p class="font-medium text-gray-800 dark:text-gray-200">
+          End view of a round pipe.
+        </p>
+        The circle is the pipe wall. The dashed line is the diameter. The blue
+        curve shows the relative speed of fluid: 0 m/s at the pipe wall, fastest
+        at the center. Smooth flow is called laminar flow.
       </figcaption>
     </figure>
 
-    <p class="font-sm text-gray-800 dark:text-gray-200">
-      The view from the end of a round pipe. The circle is the pipe wall. The
-      dashed line is the diameter. The speed is 0 m/s at the pipe wall and
-      fastest at the center. Smooth flow is called Laminar flow.
-    </p>
-    <p class="text-sm text-gray-600 dark:text-gray-400">
-      Liquid water at {{ WATER_TEMP_C }} °C — ρ = {{ rho.toFixed(1) }} kg/m³, μ
-      = {{ (mu * 1000).toFixed(3) }} mPa·s (from the site property tables).
-    </p>
-
     <div class="grid gap-4 md:grid-cols-2">
-      <label class="space-y-2 md:col-span-2">
+      <label class="space-y-2 md:col-span-2 mt-4">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300"
           >Pipe inner diameter</span
         >
         <select
           v-model="diameterPresetId"
-          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+          class="w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
           <option v-for="p in DIAMETER_PRESETS" :key="p.id" :value="p.id">
             {{ p.mm }} mm — {{ p.label }}
           </option>
         </select>
-        <p class="text-[11px] leading-snug text-gray-500 dark:text-gray-400">
-          Nominal sizes for context only—real systems use piping schedules and
-          vendor drawings.
-        </p>
+        <div class="text-[11px] leading-snug text-gray-500 dark:text-gray-400">
+          Choose among typical water pipe sizes.
+        </div>
       </label>
 
       <label class="space-y-2 md:col-span-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Pipe length L (m)</span
+          >Pipe length L</span
         >
-        <input
+        <select
           v-model.number="lengthM"
-          type="range"
-          min="0.5"
-          max="80"
-          step="0.5"
-          class="w-full" >
-        <div class="text-xs text-gray-500 dark:text-gray-400">
-          {{ lengthM }} m
-        </div>
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+          <option
+            v-for="row in PIPE_LENGTH_OPTIONS"
+            :key="row.m"
+            :value="row.m">
+            {{ row.m }} m — {{ row.note }}
+          </option>
+        </select>
       </label>
 
       <label class="space-y-2 md:col-span-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300"
           >Volume flow Q (L/s)</span
         >
-        <input
-          v-model.number="flowSlider"
-          type="range"
-          min="0"
-          :max="Q_SLIDER_STEPS"
-          step="1"
-          class="w-full" >
-        <div class="text-xs text-gray-500 dark:text-gray-400">
-          {{ flowLs < 0.1 ? flowLs.toFixed(3) : flowLs.toFixed(2) }} L/s ({{
-            Qm3s.toExponential(2)
-          }}
-          m³/s) · Re ≈
-          {{ Re.toLocaleString(undefined, { maximumFractionDigits: 0 }) }}
+        <div class="flex flex-col gap-0">
+          <div class="relative">
+            <input
+              v-model.number="flowSlider"
+              type="range"
+              min="0"
+              :max="Q_SLIDER_STEPS"
+              step="1"
+              class="relative z-0 w-full" >
+            <div
+              class="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-10 -translate-y-1/2"
+              aria-hidden="true">
+              <div
+                class="absolute bottom-1 top-1 w-[2px] -translate-x-1/2 bg-orange-500 dark:bg-orange-400"
+                :style="{ left: `${Q_SLIDER_LAMINAR_FRACTION * 100}%` }" />
+            </div>
+          </div>
+          <div class="relative -mt-3.5 flex min-h-[1.25rem] items-center">
+            <p class="text-sm tabular-nums text-gray-700 dark:text-gray-300">
+              {{ flowLs < 0.1 ? flowLs.toFixed(3) : flowLs.toFixed(2) }} L/s
+            </p>
+            <span
+              class="pointer-events-none absolute top-1/3 -translate-y-1/2 text-xs font-medium whitespace-nowrap text-orange-600 dark:text-orange-400"
+              :style="{
+                left: `calc(${Q_SLIDER_LAMINAR_FRACTION * 100}% + 6px)`,
+              }"
+              >turbulence zone</span
+            >
+          </div>
         </div>
-        <p class="text-[11px] leading-snug text-gray-500 dark:text-gray-400">
-          First {{ (Q_SLIDER_LAMINAR_FRACTION * 100).toFixed(0) }}% of the bar:
-          Q from 0 to the value that gives Re ≈
-          {{ REYNOLDS_LAMINAR_UPPER }} (Hagen–Poiseuille range). Last
-          {{ ((1 - Q_SLIDER_LAMINAR_FRACTION) * 100).toFixed(0) }}%: up to Re ≈
-          {{ RE_SLIDER_EXTEND }} (transition — same formula is shown but read
-          the warning).
-        </p>
       </label>
     </div>
 
-    <div
-      v-if="!laminarAssumptionOk"
-      class="rounded-lg border border-amber-300 bg-amber-50/90 px-4 py-3 text-sm text-amber-950 dark:border-amber-700 dark:bg-amber-950/35 dark:text-amber-100">
-      Re ≈ {{ Re.toFixed(0) }} is above the usual laminar limit (~{{
-        REYNOLDS_LAMINAR_UPPER
-      }}). Hagen–Poiseuille under-predicts losses; use the
-      <NuxtLink
-        to="/simulators/pipe-flow"
-        class="font-medium underline underline-offset-2"
-        >Pipe Flow Lab</NuxtLink
-      >
-      for friction-factor-based pipe loss.
-    </div>
-
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
       <div
         class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
         <div
@@ -264,51 +301,65 @@ const laminarAssumptionOk = computed(() => Re.value <= REYNOLDS_LAMINAR_UPPER);
           Reynolds
         </div>
         <div
-          class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+          class="mt-2 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
           {{ Re.toLocaleString(undefined, { maximumFractionDigits: 0 }) }}
         </div>
-      </div>
-      <div
-        class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-        <div
-          class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-          Mean velocity v
-        </div>
-        <div
-          class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
-          {{ velocity < 0.1 ? velocity.toFixed(3) : velocity.toFixed(2) }} m/s
-        </div>
-      </div>
-      <div
-        class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-        <div
-          class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-          Δp (Hagen–Poiseuille)
-        </div>
-        <div
-          class="mt-1 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
-          {{
-            (deltaPa / 1000).toLocaleString(undefined, {
-              maximumFractionDigits: 2,
-            })
-          }}
-          kPa
-        </div>
-        <p
-          class="mt-2 text-[11px] leading-snug text-gray-500 dark:text-gray-400">
-          Δp = 128 μ L Q / (π D⁴). Strongest dependence is on D (fourth power).
+        <p class="mt-1 text-sm leading-snug text-gray-600 dark:text-gray-400">
+          Re = ρ v D / μ
         </p>
+        <ul
+          class="mt-2 list-none space-y-0.5 pl-0 text-[11px] leading-snug text-gray-500 dark:text-gray-400">
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">ρ</span>
+            — density of liquid (kg/m³); water at {{ WATER_TEMP_C }} °C
+          </li>
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">v</span>
+            — mean flow speed across the pipe (m/s)
+          </li>
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">D</span>
+            — inner pipe diameter (m)
+          </li>
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">μ</span>
+            — dynamic viscosity (Pa·s)
+          </li>
+        </ul>
+      </div>
+      <div
+        class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+        <div
+          class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          Pressure drop (Δp)
+        </div>
+        <div
+          class="mt-2 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+          {{ formatPressureDropPa(deltaPa) }}
+        </div>
+        <p class="mt-1 text-sm leading-snug text-gray-600 dark:text-gray-400">
+          Δp = 128 μ L Q / (π D⁴)
+        </p>
+        <ul
+          class="mt-2 list-none space-y-0.5 pl-0 text-[11px] leading-snug text-gray-500 dark:text-gray-400">
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">μ</span>
+            — dynamic viscosity (Pa·s); water at {{ WATER_TEMP_C }} °C
+          </li>
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">L</span>
+            — pipe length (m)
+          </li>
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">Q</span>
+            — volume flow rate (m³/s)
+          </li>
+          <li>
+            <span class="italic text-gray-600 dark:text-gray-300">D</span>
+            — inner pipe diameter (m)
+          </li>
+        </ul>
       </div>
     </div>
-
-    <p class="text-xs text-gray-500 dark:text-gray-400">
-      Next in this series:
-      <NuxtLink
-        to="/simulators/pipe-flow"
-        class="font-medium text-primary-600 underline-offset-2 hover:underline dark:text-primary-400">
-        Pipe Flow Lab
-      </NuxtLink>
-      (roughness, transition / turbulence, minor losses, Moody chart).
-    </p>
   </div>
 </template>
