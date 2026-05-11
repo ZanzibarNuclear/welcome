@@ -19,9 +19,13 @@ Although it seems simple, what happens inside a pipe is rather complicated. Imag
 
 What you don't see is inside the pipe. As it happens, the liquid that is moving through the center of the pipe flows faster than the liquid along the pipe walls. In theory, a thin layer of atoms of liquid are stuck to the pipe. Their speed is 0. The next layer of atoms is moving just a bit above zero. The next layer is a bit faster than that. At the center of the pipe, the liquid is moving fastest.
 
+![Laminar pipe-flow cross-section SVG](/images/simulators/pipe-flow-laminar-cross-section.svg)
+
 At slower speeds, the layers do not mix or interfere with each other. They appear smooth. That is laminar flow.
 
 Now imagine you are in a hurry to move this liquid, so you crank up the pump. As the speed of the liquid through the pipe increases, eventually the layers start to cross over and swirl and become unsettled. That is turbulent flow, not laminar.
+
+![Turbulent pipe-flow cross-section SVG](/images/simulators/pipe-flow-turbulent-cross-section.svg)
 
 One key idea of this model is to see when flow transitions from laminar to turbulent. Look for the "turbulence zone" in the model. You can get a sense of how much water flows through different size pipe that are typically found in a power plant when the flow is smooth. Try different options and move the volume flow slider. Watch the numbers move.
 

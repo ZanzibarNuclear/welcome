@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" role="img" aria-labelledby="title desc">
+  <title id="title">Turbulent pipe-flow cross-section</title>
+  <desc id="desc">A pipe cross-section with gray walls and blue flow where curved arrows and short reverse-hook eddies represent turbulent mixing and local backflow.</desc>
+
+  <defs>
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d9dde3"/>
+      <stop offset="55%" stop-color="#aeb5bf"/>
+      <stop offset="100%" stop-color="#8f97a3"/>
+    </linearGradient>
+
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#dff3ff"/>
+      <stop offset="24%" stop-color="#bfe8ff"/>
+      <stop offset="50%" stop-color="#69c9ff"/>
+      <stop offset="76%" stop-color="#bfe8ff"/>
+      <stop offset="100%" stop-color="#dff3ff"/>
+    </linearGradient>
+
+    <marker id="arrowHead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#0b6ea8"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="380" fill="#ffffff"/>
+
+  <text x="450" y="42" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#334155">
+    Turbulent Flow
+  </text>
+
+  <rect x="80" y="80" width="740" height="30" rx="6" fill="url(#wallGrad)" stroke="#7f8792" stroke-width="2"/>
+  <rect x="80" y="270" width="740" height="30" rx="6" fill="url(#wallGrad)" stroke="#7f8792" stroke-width="2"/>
+
+  <rect x="80" y="110" width="740" height="160" fill="url(#waterGrad)" stroke="#78bfe6" stroke-width="2"/>
+
+  <g stroke="#0b6ea8" stroke-width="4" fill="none" marker-end="url(#arrowHead)" stroke-linecap="round">
+    <path d="M110 136 C180 110, 240 164, 310 136 S430 164, 500 136 S620 164, 700 136"/>
+    <path d="M120 160 C190 188, 260 132, 330 160 S470 132, 540 160 S690 132, 780 160"/>
+    <path d="M110 190 C170 150, 250 232, 330 190 S470 150, 550 190 S700 150, 790 190"/>
+    <path d="M120 220 C200 252, 270 186, 350 220 S500 186, 580 220 S710 186, 780 220"/>
+    <path d="M110 244 C180 220, 250 268, 320 244 S450 268, 520 244 S650 268, 740 244"/>
+  </g>
+
+  <g stroke="#0b6ea8" stroke-width="3.5" fill="none" opacity="0.9" marker-end="url(#arrowHead)" stroke-linecap="round">
+    <path d="M292 186 C328 176, 334 210, 304 220 C272 230, 250 214, 260 196"/>
+    <path d="M492 148 C526 138, 534 170, 504 182 C474 194, 454 180, 462 162"/>
+    <path d="M692 210 C730 198, 740 236, 706 248 C670 260, 644 242, 654 222"/>
+  </g>
+
+  <text x="475" y="102" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="17" fill="#4b5563">Pipe wall</text>
+  <text x="475" y="293" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="17" fill="#4b5563">Pipe wall</text>
+</svg>
