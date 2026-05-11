@@ -9,13 +9,23 @@ series: "Pipe flow"
 order: 6
 ---
 
-## What This Models
+## What Does Laminar Mean?
 
-We can use this model to get a sense how liquids moves through a straight pipe. Even this simple view is a bit tricky to understand. Tricky, but within reach. To keep things familiar, we model water at 40˚C. That and a bit of soap is just right for washing your hands.
+Laminar means that something is made of layers. Laminar flow looks like the liquid is moving in smooth layers. No swirls, no eddies, no distruptions.
 
-Laminar means flat or smooth. So picture a clear pipe with water flowing straight through it. No swirls, no bubbles, no distruptions.
+We all know what tends to happen where you open a faucet. Water comes out. Behind every faucet and after every drain, you will find various lengths of pipe that carry the water or whatever liquid happens to flow through it.
 
-Fluids that flow with disruptions, such as swirls and eddies, are said to be turbulent. The effects of turbulence are beyond this model. In the model (above), look for the "turbulence zone". So you can get a sense of how much water flows through different size pipe that are typically found in a power plant when the flow is smooth.
+Although it seems simple, what happens inside a pipe is rather complicated. Imagine a pipe that is flowing, full of moving liquid. Say there is a pump at one end that sucks up the liquid and pushes it into the pipe. The other end is open, so the liquid flows into containers or all over the floor or into the yard.
+
+What you don't see is inside the pipe. As it happens, the liquid that is moving through the center of the pipe flows faster than the liquid along the pipe walls. In theory, a thin layer of atoms of liquid are stuck to the pipe. Their speed is 0. The next layer of atoms is moving just a bit above zero. The next layer is a bit faster than that. At the center of the pipe, the liquid is moving fastest.
+
+At slower speeds, the layers do not mix or interfere with each other. They appear smooth. That is laminar flow.
+
+Now imagine you are in a hurry to move this liquid, so you crank up the pump. As the speed of the liquid through the pipe increases, eventually the layers start to cross over and swirl and become unsettled. That is turbulent flow, not laminar.
+
+One key idea of this model is to see when flow transitions from laminar to turbulent. Look for the "turbulence zone" in the model. You can get a sense of how much water flows through different size pipe that are typically found in a power plant when the flow is smooth. Try different options and move the volume flow slider. Watch the numbers move.
+
+Turbulent flow is even more complicated than laminar flow, so we tackle that in a different model.
 
 ## What Reynolds number measures
 
@@ -42,7 +52,7 @@ $$
 
 **Pressure drop** $\Delta p$ is how much lower the fluid pressure is at the **outlet** of a pipe run than at the **inlet**, for a given steady flow. You can think of it as the extra “push” the fluid needs from pumps or headers to overcome **viscous friction** along the walls. The simulator reports $\Delta p$ in pascals (Pa), the same unit you would see on many plant instruments.
 
-For **laminar** flow in a long, straight, round pipe, the **Hagen–Poiseuille** result relates $\Delta p$ to the volume flow rate $Q$, the pipe geometry, and the viscosity:
+For **laminar** flow in a long, straight, round pipe, the **Hagen-Poiseuille** result relates $\Delta p$ to the volume flow rate $Q$, the pipe geometry, and the viscosity:
 
 $$
 \Delta p = \frac{128\,\mu\, L\, Q}{\pi\, D^{4}}
