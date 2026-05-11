@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     }
   },
   modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/eslint', '@vercel/analytics/nuxt'],
-  css: ['~~/assets/css/main.css'],
+  css: ['katex/dist/katex.min.css', '~~/assets/css/main.css'],
   colorMode: {
     preference: 'dark',
     fallback: 'dark'
@@ -24,6 +24,12 @@ export default defineNuxtConfig({
     experimental: { nativeSqlite: true },
     build: {
       markdown: {
+        remarkPlugins: {
+          'remark-math': {}
+        },
+        rehypePlugins: {
+          'rehype-katex': {}
+        },
         toc: {
           depth: 3,
           searchDepth: 3

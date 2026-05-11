@@ -9,43 +9,69 @@ series: "Pipe flow"
 order: 6
 ---
 
-## What this models
+## What This Models
 
-**Hagen–Poiseuille** for **steady, incompressible, fully developed** flow in a **straight circular** pipe, with **no fittings** and **no entry-length correction**. This lab fixes **liquid water at 40 °C** (\(\rho\) and \(\mu\) from the site tables). You choose **D** from a short list of **nominal plant-style sizes**, pick **L** from **order-of-magnitude pipe lengths** (5–80 m), and set **Q**.
+We can use this model to get a sense how liquids moves through a straight pipe. Even this simple view is a bit tricky to understand. Tricky, but within reach. To keep things familiar, we model water at 40˚C. That and a bit of soap is just right for washing your hands.
 
-The **Q** slider spends most of its travel on the laminar range: the first **75%** maps **0 → Q** at \(\mathrm{Re} \approx 2100\); the last **25%** stretches into **transition** up to \(\mathrm{Re} \approx 4000\) so you can see the warning without losing resolution in the accurate region.
+Laminar means flat or smooth. So picture a clear pipe with water flowing straight through it. No swirls, no bubbles, no distruptions.
 
-Pressure drop is
-
-\[
-\Delta p = \frac{128\,\mu L Q}{\pi D^4}
-\]
-
-with \(Q\) the volume flow rate, \(\mu\) the dynamic viscosity, and \(D\) the inner diameter. Mean speed is \(v = Q/A\) and \(\mathrm{Re} = \rho v D/\mu\).
+Fluids that flow with disruptions, such as swirls and eddies, are said to be turbulent. The effects of turbulence are beyond this model. In the model (above), look for the "turbulence zone". So you can get a sense of how much water flows through different size pipe that are typically found in a power plant when the flow is smooth.
 
 ## What Reynolds number measures
 
-The **Reynolds number** \(\mathrm{Re}\) is a **dimensionless ratio**: it compares **inertial** effects in the flow (how strongly the fluid “carries” its motion) to **viscous** effects (how strongly the fluid resists shearing). It is **not** “speed” by itself—it combines **speed**, **pipe size**, **density**, and **viscosity** into one number so you can judge **how the flow tends to behave**.
+The **Reynolds number** $\mathrm{Re}$ is a **ratio**. That means it that has no dimensions. The Reynolds number compares a flow's **inertial** effects with its **viscous** effects.
 
-For round pipe flow the lab uses
+In other words, it compares the fluid's tendency to keep moving with its tendency to slow down or stickiness.
 
-\[
-\mathrm{Re} = \frac{\rho\, v\, D}{\mu}.
-\]
+This ratio is useful. When it gets to about 2,000, the flow switches from laminar to turbulent.
 
-**Rough intuition:**
+The Reynolds number combines **speed**, **pipe size**, **density**, and **viscosity** into one number so you can judge **how the flow tends to behave**.
 
-- **Lower \(\mathrm{Re}\)** — Viscosity dominates; smooth, layered **laminar** motion is typical (what Hagen–Poiseuille describes).
-- **Higher \(\mathrm{Re}\)** — Inertia matters more; the flow more readily forms **eddies** and **turbulence** once \(\mathrm{Re}\) is well past the laminar range.
+For flow in a round pipe:
 
-Same fluid and pipe can land at very different \(\mathrm{Re}\) if you change \(v\) (via \(Q\)) or \(D\); that is why \(\mathrm{Re}\) is more informative than \(v\) alone for deciding whether the laminar model is believable.
+$$
+\mathrm{Re} = \frac{\rho\, v\, D}{\mu}
+$$
 
-## What it is not
+- $\rho$ — **Density** of the fluid (mass per unit volume).
+- $v$ — **Average speed** of the flow along the pipe.
+- $D$ — **Inner diameter** of the pipe.
+- $\mu$ — **Dynamic viscosity** of the fluid (how strongly it resists shearing).
 
-It is **not valid** once \(\mathrm{Re}\) is well into the transitional / turbulent regime (the lab warns above about 2100). It ignores **rough walls**, **minor losses**, **pumps**, **heat transfer**, and **developing** flow near the inlet. Later simulators in this series add those pieces.
+## Pressure drop ($\Delta p$)
 
-## Try this
+**Pressure drop** $\Delta p$ is how much lower the fluid pressure is at the **outlet** of a pipe run than at the **inlet**, for a given steady flow. You can think of it as the extra “push” the fluid needs from pumps or headers to overcome **viscous friction** along the walls. The simulator reports $\Delta p$ in pascals (Pa), the same unit you would see on many plant instruments.
 
-- Switch **D** among the presets (e.g. SG tube vs main steam vs CW) and watch \(\Delta p\) move roughly as \(1/D^4\) at fixed **Q** (stay in the laminar portion of the **Q** bar—left of the marker—for a trustworthy read).
-- Change **L** among the length options and confirm \(\Delta p\) scales about linearly with length at fixed **Q** and **D**.
-- Use the **turbulence zone** (right of the marker on the **Q** bar) to cross the laminar limit, then open the **Pipe Flow Lab** for friction-factor-based loss.
+For **laminar** flow in a long, straight, round pipe, the **Hagen–Poiseuille** result relates $\Delta p$ to the volume flow rate $Q$, the pipe geometry, and the viscosity:
+
+$$
+\Delta p = \frac{128\,\mu\, L\, Q}{\pi\, D^{4}}
+$$
+
+- $\Delta p$ — **Pressure drop** along the length of the pipe.
+- $\mu$ — **Dynamic viscosity** of the fluid (same as in the Reynolds number).
+- $L$ — **Length** of the straight pipe segment.
+- $Q$ — **Volume flow rate** (volume of fluid passing a cross-section per unit time).
+- $D$ — **Inner diameter** of the pipe.
+
+**Rough trends (still in the laminar range):** at fixed $Q$, a longer pipe or a narrower pipe raises $\Delta p$; making the pipe wider lowers $\Delta p$ very strongly because of the $D^{4}$ in the denominator. If you push the flow rate up until the motion is no longer cleanly laminar, this formula is no longer a good model—that is what the turbulence warning in the lab is about.
+
+## Who were Reynolds, Hagen, and Poiseuille?
+
+**Osborne Reynolds** (1842–1912) was an Irish engineer and physicist. He is best remembered here for the **Reynolds number** and for careful experiments on water flowing in pipes—work that helped clarify when smooth laminar motion gives way to turbulent motion.
+
+**Gotthilf Hagen** (1797–1884) was a German civil engineer who studied water flow in pipes and channels. His measurements in the 1830s showed how **pressure drop** and **flow rate** relate in the slow, orderly regime we now call laminar.
+
+**Jean Léonard Marie Poiseuille** (1797–1869) was a French physician and physicist. Interested in **blood flow** in narrow tubes, he measured how liquids move through small glass pipes and published quantitative laws for low-speed flow—work that lines up with what we call **Poiseuille flow** today.
+
+Hagen and Poiseuille arrived at similar pipe-flow results by experiment, around the same era; the combined name **Hagen–Poiseuille** reflects that shared legacy.
+
+### Honorable Mention
+
+Hagen and Poiseuille worked from **experiments**. The deeper **math** came later.
+
+**Claude-Louis Navier** (1785–1836), in France, put **viscosity** into the equations of motion in the 1820s.
+
+**George Gabriel Stokes** (1819–1903), in Britain, finished the form we call the **Navier–Stokes** equations. In **1851** he published a **theory** of laminar flow in a round pipe that fits those early measurements.
+
+The Navier–Stokes equations tie **pressure**, **viscosity**, and **motion** together for fluids everywhere—not just inside a pipe.

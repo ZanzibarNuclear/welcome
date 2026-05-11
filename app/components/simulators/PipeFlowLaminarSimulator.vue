@@ -273,11 +273,11 @@ const deltaPa = computed(() =>
               class="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-10 -translate-y-1/2"
               aria-hidden="true">
               <div
-                class="absolute bottom-1 top-1 w-[2px] -translate-x-1/2 bg-orange-500 dark:bg-orange-400"
+                class="absolute bottom-1 top-1 w-0.5 -translate-x-1/2 bg-orange-500 dark:bg-orange-400"
                 :style="{ left: `${Q_SLIDER_LAMINAR_FRACTION * 100}%` }" />
             </div>
           </div>
-          <div class="relative -mt-3.5 flex min-h-[1.25rem] items-center">
+          <div class="relative -mt-3.5 flex min-h-5 items-center">
             <p class="text-sm tabular-nums text-gray-700 dark:text-gray-300">
               {{ flowLs < 0.1 ? flowLs.toFixed(3) : flowLs.toFixed(2) }} L/s
             </p>
@@ -298,34 +298,12 @@ const deltaPa = computed(() =>
         class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
         <div
           class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-          Reynolds
+          Reynolds Number
         </div>
         <div
           class="mt-2 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
           {{ Re.toLocaleString(undefined, { maximumFractionDigits: 0 }) }}
         </div>
-        <p class="mt-1 text-sm leading-snug text-gray-600 dark:text-gray-400">
-          Re = ρ v D / μ
-        </p>
-        <ul
-          class="mt-2 list-none space-y-0.5 pl-0 text-[11px] leading-snug text-gray-500 dark:text-gray-400">
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">ρ</span>
-            — density of liquid (kg/m³); water at {{ WATER_TEMP_C }} °C
-          </li>
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">v</span>
-            — mean flow speed across the pipe (m/s)
-          </li>
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">D</span>
-            — inner pipe diameter (m)
-          </li>
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">μ</span>
-            — dynamic viscosity (Pa·s)
-          </li>
-        </ul>
       </div>
       <div
         class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
@@ -337,28 +315,6 @@ const deltaPa = computed(() =>
           class="mt-2 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-100">
           {{ formatPressureDropPa(deltaPa) }}
         </div>
-        <p class="mt-1 text-sm leading-snug text-gray-600 dark:text-gray-400">
-          Δp = 128 μ L Q / (π D⁴)
-        </p>
-        <ul
-          class="mt-2 list-none space-y-0.5 pl-0 text-[11px] leading-snug text-gray-500 dark:text-gray-400">
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">μ</span>
-            — dynamic viscosity (Pa·s); water at {{ WATER_TEMP_C }} °C
-          </li>
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">L</span>
-            — pipe length (m)
-          </li>
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">Q</span>
-            — volume flow rate (m³/s)
-          </li>
-          <li>
-            <span class="italic text-gray-600 dark:text-gray-300">D</span>
-            — inner pipe diameter (m)
-          </li>
-        </ul>
       </div>
     </div>
   </div>
