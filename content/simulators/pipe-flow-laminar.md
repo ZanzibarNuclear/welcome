@@ -21,6 +21,10 @@ What you don't see is inside the pipe. As it happens, the liquid that is moving 
 
 ![Laminar pipe-flow cross-section SVG](/images/simulators/pipe-flow-laminar-cross-section.svg)
 
+To make the speed difference easier to see, picture five tiny submarines drifting down the pipe — one per layer. The sub in the middle rides the fastest current, while the subs riding closest to the walls are dragged back by friction and creep along.
+
+![Animated laminar flow with five submarines](/images/simulators/pipe-flow-laminar-submarines.svg)
+
 At slower speeds, the layers do not mix or interfere with each other. They appear smooth. That is laminar flow.
 
 Now imagine you are in a hurry to move this liquid, so you crank up the pump. As the speed of the liquid through the pipe increases, eventually the layers start to cross over and swirl and become unsettled. That is turbulent flow, not laminar.
