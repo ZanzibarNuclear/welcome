@@ -17,21 +17,23 @@ We all know what tends to happen where you open a faucet. Water comes out. Behin
 
 Although it seems simple, what happens inside a pipe is rather complicated. Imagine a pipe that is flowing, full of moving liquid. Say there is a pump at one end that sucks up the liquid and pushes it into the pipe. The other end is open, so the liquid flows into containers or all over the floor or into the yard.
 
-What you don't see is inside the pipe. As it happens, the liquid that is moving through the center of the pipe flows faster than the liquid along the pipe walls. In theory, a thin layer of atoms of liquid are stuck to the pipe. Their speed is 0. The next layer of atoms is moving just a bit above zero. The next layer is a bit faster than that. At the center of the pipe, the liquid is moving fastest.
+What you don't see is inside the pipe. As it happens, the liquid that is moving through the center of the pipe flows faster than the liquid along the pipe walls. In theory, a thin layer of atoms of liquid are stuck to the pipe with a speed of 0.
 
-![Laminar pipe-flow cross-section SVG](/images/simulators/pipe-flow-laminar-cross-section.svg)
+The next layer of atoms is moving just a tiny bit. The liquid moves faster and faster as you go toward teh center, where it moves fastest.
 
-To make the speed difference easier to see, picture five tiny submarines drifting down the pipe — one per layer. The sub in the middle rides the fastest current, while the subs riding closest to the walls are dragged back by friction and creep along.
+Try a fun way to visualize the effect. Pretend that inside the pipe are tiny submarines with tiny sailors. The subs have cut the engines, so they go only as fast as the water pushes them.
 
 ![Animated laminar flow with five submarines](/images/simulators/pipe-flow-laminar-submarines.svg)
 
-At slower speeds, the layers do not mix or interfere with each other. They appear smooth. That is laminar flow.
+This is laminar flow. The "layers" do not mix or interfere with each other, and the flow is smooth. Our sailor get a relaxing ride through the pipe.
 
-Now imagine you are in a hurry to move this liquid, so you crank up the pump. As the speed of the liquid through the pipe increases, eventually the layers start to cross over and swirl and become unsettled. That is turbulent flow, not laminar.
+## A Bumpy Ride
+
+The sailors are having so much fun that they want to go faster. So they radio the pump operator to crank it up. As the speed increases, everything is smooth, until it's not. At some speed, the "layers" begin to mix, and the flow starts to get lumpy. That is when the flow becomes turbulent.
 
 ![Turbulent pipe-flow cross-section SVG](/images/simulators/pipe-flow-turbulent-cross-section.svg)
 
-One key idea of this model is to see when flow transitions from laminar to turbulent. Look for the "turbulence zone" in the model. You can get a sense of how much water flows through different size pipe that are typically found in a power plant when the flow is smooth. Try different options and move the volume flow slider. Watch the numbers move.
+Use this model to see when flow transitions from laminar to turbulent. Look for the "turbulence zone" in the model. You can get a sense of how much water flows through different size pipe that are typically found in a power plant when the flow is smooth. Try different options and move the volume flow slider. Watch the numbers move.
 
 Turbulent flow is even more complicated than laminar flow, so we tackle that in a different model.
 

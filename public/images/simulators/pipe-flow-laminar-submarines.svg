@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" role="img" aria-labelledby="title desc">
-  <title id="title">Laminar pipe flow with submarines</title>
+  <title id="title">Mini submarines demonstrate laminar flow</title>
   <desc id="desc">Side view of a pipe with five small submarines flowing left to right. The center submarine moves fastest and the submarines closest to the top and bottom walls move slowest, illustrating the parabolic velocity profile of laminar flow.</desc>
 
   <defs>
@@ -40,7 +40,7 @@
   <rect x="0" y="0" width="900" height="380" fill="#ffffff"/>
 
   <text x="450" y="42" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#334155">
-    Laminar Flow - Submarines in the Pipe
+    Mini submarines demonstrate laminar flow
   </text>
 
   <rect x="80" y="80" width="740" height="30" rx="6" fill="url(#wallGrad)" stroke="#7f8792" stroke-width="2"/>
@@ -65,11 +65,4 @@
       <animate attributeName="x" from="-80" to="900" dur="9s" begin="-6.5s" repeatCount="indefinite"/>
     </use>
   </g>
-
-  <text x="830" y="102" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="17" fill="#4b5563">Top pipe wall</text>
-  <text x="830" y="293" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="17" fill="#4b5563">Bottom pipe wall</text>
-
-  <text x="450" y="334" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" fill="#0f172a">
-    Center submarine is fastest. Submarines near the walls are slowest.
-  </text>
 </svg>
