@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" role="img" aria-labelledby="title desc">
+  <title id="title">Turbulent flow is bumpy</title>
+  <desc id="desc">Side view of a pipe with five small submarines drifting left to right. Between wall eddies, each path is rough and lumpy so motion feels turbulent. Center subs never enter a wall eddy but still get tossed about. Outer subs are pulled into smooth full eddy loops hugging the walls. rotate auto keeps subs banking along the path.</desc>
+
+  <defs>
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d9dde3"/>
+      <stop offset="55%" stop-color="#aeb5bf"/>
+      <stop offset="100%" stop-color="#8f97a3"/>
+    </linearGradient>
+
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#dff3ff"/>
+      <stop offset="24%" stop-color="#bfe8ff"/>
+      <stop offset="50%" stop-color="#69c9ff"/>
+      <stop offset="76%" stop-color="#bfe8ff"/>
+      <stop offset="100%" stop-color="#dff3ff"/>
+    </linearGradient>
+
+    <clipPath id="pipeInside">
+      <rect x="80" y="110" width="740" height="160"/>
+    </clipPath>
+
+    <symbol id="sub" viewBox="0 0 60 24">
+      <line x1="2" y1="10" x2="10" y2="20" stroke="#0f172a" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="2" y1="20" x2="10" y2="10" stroke="#0f172a" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M 10 9 Q 8 22, 16 22 L 48 22 Q 56 22, 56 15 Q 56 8, 48 8 L 16 8 Q 8 8, 10 15 Z"
+            fill="#475569" stroke="#0f172a" stroke-width="1"/>
+      <path d="M 26 4 L 38 4 Q 40 4, 40 6 L 40 9 L 26 9 Z"
+            fill="#475569" stroke="#0f172a" stroke-width="1"/>
+      <line x1="32" y1="1" x2="32" y2="4" stroke="#0f172a" stroke-width="1.4"/>
+      <circle cx="32" cy="1" r="1.1" fill="#0f172a"/>
+      <circle cx="20" cy="15" r="1.4" fill="#fde68a" stroke="#0f172a" stroke-width="0.5"/>
+      <circle cx="30" cy="15" r="1.4" fill="#fde68a" stroke="#0f172a" stroke-width="0.5"/>
+      <circle cx="40" cy="15" r="1.4" fill="#fde68a" stroke="#0f172a" stroke-width="0.5"/>
+      <circle cx="48" cy="15" r="1.4" fill="#fde68a" stroke="#0f172a" stroke-width="0.5"/>
+    </symbol>
+
+    <!-- Upper: lumpy / bumpy run-in, smooth wall eddy, lumpy exit -->
+    <path id="turbPath1" d="M -80,138 C -45,152 -10,126 30,148 C 70,168 110,128 150,156 C 190,172 230,132 270,152 C 310,170 350,134 390,154 C 420,142 435,158 450,150 C 450 155.523 455.523 160 460 160 C 464.477 160 470 155.523 470 150 C 470 144.477 464.477 140 460 140 C 455.523 140 450 144.477 450 150 C 485,136 525,162 565,142 C 605,168 645,132 685,156 C 725,138 765,166 805,148 C 845,172 885,134 925,158 C 960,144 985,152 1000,145"/>
+    <!-- Mid-upper: choppy mid-pipe, bottom-wall eddy, choppy out -->
+    <path id="turbPath2" d="M -80,192 C -48,208 -16,176 20,200 C 56,180 92,214 128,186 C 164,208 200,178 236,202 C 272,184 308,216 344,194 C 372,212 392,228 406,242 C 406 248.627 412.627 254 418 254 C 423.373 254 430 248.627 430 242 C 430 235.373 423.373 230 418 230 C 412.627 230 406 235.373 406 242 C 435,218 472,206 508,214 C 544,192 588,224 624,198 C 660,216 696,188 732,210 C 768,194 804,222 840,200 C 880,218 920,190 960,208 C 985,196 1000,204 1000,200"/>
+    <!-- Center: no wall eddy — all chop and lump, still mid-band -->
+    <path id="turbPath3" d="M -80,190 C -52,204 -24,176 8,198 C 42,178 76,210 110,184 C 144,202 178,172 212,198 C 246,182 280,208 314,186 C 348,202 382,176 416,196 C 450,180 484,206 518,188 C 552,200 586,174 620,194 C 654,182 688,204 722,188 C 756,198 790,176 824,192 C 858,184 892,202 926,186 C 960,196 985,182 1000,188"/>
+    <!-- Mid-lower: rough run-in, top-wall eddy, rough exit -->
+    <path id="turbPath4" d="M -80,202 C -50,218 -20,186 18,210 C 56,188 94,222 132,196 C 170,214 208,180 246,206 C 284,188 322,218 360,194 C 398,212 436,176 474,204 C 512,186 550,214 588,192 C 612,182 626,166 632,152 C 632 157.523 637.523 162 642 162 C 647.523 162 652 157.523 652 152 C 652 146.477 646.477 142 642 142 C 637.523 142 632 146.477 632 152 C 658,178 698,198 738,184 C 778,212 818,176 858,204 C 898,188 938,218 978,196 C 992,208 1000,206 1000,212"/>
+    <!-- Lower: lumpy approach, bottom eddy, lumpy tail -->
+    <path id="turbPath5" d="M -80,218 C -48,236 -16,204 22,228 C 60,206 98,240 136,214 C 174,236 212,208 250,232 C 288,210 326,242 364,218 C 402,236 440,212 478,230 C 516,208 554,238 592,222 C 630,240 668,216 692,236 C 702,242 706,244 709,244 C 709 250.075 715.075 255 720 255 C 724.925 255 731 250.075 731 244 C 731 237.925 724.925 233 720 233 C 715.075 233 709 237.925 709 244 C 738,218 778,234 818,212 C 858,238 898,206 938,228 C 972,210 1000,222 1000,228"/>
+
+    <marker id="eddyArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0b6ea8" opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="380" fill="#ffffff"/>
+
+  <text x="450" y="42" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#334155">
+    Mini submarines pushed around by turbulence
+  </text>
+
+  <rect x="80" y="80" width="740" height="30" rx="6" fill="url(#wallGrad)" stroke="#7f8792" stroke-width="2"/>
+  <rect x="80" y="270" width="740" height="30" rx="6" fill="url(#wallGrad)" stroke="#7f8792" stroke-width="2"/>
+
+  <rect x="80" y="110" width="740" height="160" fill="url(#waterGrad)" stroke="#78bfe6" stroke-width="2"/>
+
+  <g clip-path="url(#pipeInside)" stroke="#0b6ea8" stroke-width="2" fill="none" opacity="0.45" stroke-linecap="round" marker-end="url(#eddyArrow)">
+    <path d="M 200 150 C 232 142, 240 174, 214 184 C 188 192, 168 178, 178 162"/>
+    <path d="M 470 220 C 502 212, 510 244, 484 254 C 458 262, 438 248, 448 232"/>
+    <path d="M 720 160 C 752 152, 760 184, 734 194 C 708 202, 688 188, 698 172"/>
+  </g>
+
+  <g clip-path="url(#pipeInside)">
+    <g>
+      <use href="#sub" x="-30" y="-12" width="60" height="24"/>
+      <animateMotion dur="6s" begin="0s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#turbPath1"/>
+      </animateMotion>
+    </g>
+    <g>
+      <use href="#sub" x="-30" y="-12" width="60" height="24"/>
+      <animateMotion dur="7s" begin="-2s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#turbPath2"/>
+      </animateMotion>
+    </g>
+    <g>
+      <use href="#sub" x="-30" y="-12" width="60" height="24"/>
+      <animateMotion dur="5.5s" begin="-1s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#turbPath3"/>
+      </animateMotion>
+    </g>
+    <g>
+      <use href="#sub" x="-30" y="-12" width="60" height="24"/>
+      <animateMotion dur="6.5s" begin="-3.5s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#turbPath4"/>
+      </animateMotion>
+    </g>
+    <g>
+      <use href="#sub" x="-30" y="-12" width="60" height="24"/>
+      <animateMotion dur="6s" begin="-4s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#turbPath5"/>
+      </animateMotion>
+    </g>
+  </g>
+
+  <text x="450" y="334" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" fill="#0f172a">
+    Rough, lumpy paths between eddies — only the wall eddies stay smooth. Hope your sailors brought dramamine.
+  </text>
+</svg>
