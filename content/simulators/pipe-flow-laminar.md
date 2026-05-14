@@ -7,6 +7,7 @@ description: "The simplest model of fluid flowing smoothly through a pipe."
 tags: [fluids, hydraulics, pipe-flow]
 series: "Pipe flow"
 order: 6
+cover: "/images/simulators/covers/laminar-selfie.png"
 ---
 
 ## What Does Laminar Mean?

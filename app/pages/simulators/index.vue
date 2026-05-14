@@ -59,29 +59,37 @@ useHead({
         v-for="simulator in simulators"
         :key="simulator.path"
         :to="simulator.path"
-        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
-        <div>
-          <div class="mb-5 flex items-center justify-between">
-            <span
-              class="rounded-full px-3 py-1 text-sm font-medium"
-              :class="difficultyBadgeClass(simulator.difficulty)">
-              {{ simulator.difficulty ?? "advanced" }}
-            </span>
-            <UIcon
-              :name="simulatorIcon(simulator.path)"
-              class="text-3xl text-primary-500" />
+        class="group flex min-h-72 flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white no-underline shadow-sm transition hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500">
+        <div class="flex flex-1 flex-col justify-between p-8">
+          <div>
+            <div class="mb-5 flex items-center justify-between">
+              <span
+                class="rounded-full px-3 py-1 text-sm font-medium"
+                :class="difficultyBadgeClass(simulator.difficulty)">
+                {{ simulator.difficulty ?? "advanced" }}
+              </span>
+              <UIcon
+                :name="simulatorIcon(simulator.path)"
+                class="text-3xl text-primary-500" />
+            </div>
+            <h2
+              class="mb-3 text-2xl font-bold text-gray-900 transition group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
+              {{ simulator.title }}
+            </h2>
+            <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+              {{ simulator.description ?? "Open this simulator." }}
+            </p>
           </div>
-          <h2
-            class="mb-3 text-2xl font-bold text-gray-900 transition group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
-            {{ simulator.title }}
-          </h2>
-          <p class="leading-relaxed text-gray-600 dark:text-gray-400">
-            {{ simulator.description ?? "Open this simulator." }}
-          </p>
+          <span
+            class="mt-8 font-semibold text-primary-600 dark:text-primary-400">
+            Open simulator
+          </span>
         </div>
-        <span class="mt-8 font-semibold text-primary-600 dark:text-primary-400">
-          Open simulator
-        </span>
+        <img
+          v-if="simulator.cover"
+          :src="simulator.cover"
+          :alt="simulator.title"
+          class="h-44 w-full shrink-0 object-cover" >
       </NuxtLink>
     </div>
   </div>

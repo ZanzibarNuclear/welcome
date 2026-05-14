@@ -7,6 +7,7 @@ description: "Same controls as the Bohr-model builder, but electrons appear as o
 tags: [atoms, elements, interactive, quantum]
 featured: false
 order: 3
+cover: "/images/simulators/covers/quantum-selfie.png"
 ---
 
 ## Probability clouds, not orbits

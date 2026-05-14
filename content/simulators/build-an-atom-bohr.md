@@ -7,6 +7,7 @@ description: "This simulator features the Bohr model. See how an element changes
 tags: [atoms, elements, interactive]
 featured: true
 order: 1
+cover: "/images/simulators/covers/bohr-selfie.png"
 ---
 
 ## Ready to Experiment?

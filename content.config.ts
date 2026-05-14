@@ -25,7 +25,8 @@ export default defineContentConfig({
         fuel: z.string().optional(),
         status: z.string().optional(),
         component: z.string().optional(),
-        hidden: z.boolean().optional()
+        hidden: z.boolean().optional(),
+        cover: z.string().optional()
       })
     })
   }

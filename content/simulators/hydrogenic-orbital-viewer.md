@@ -7,6 +7,7 @@ description: "Explore hydrogen-like orbital lobes and nodal structure in both 2D
 tags: [atoms, orbitals, quantum, visualization]
 featured: true
 order: 4
+cover: "/images/simulators/covers/orbital-selfie.png"
 ---
 
 ## What this viewer shows

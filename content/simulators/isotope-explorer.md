@@ -7,6 +7,7 @@ description: "See how alchemy works. Push atoms through transformations."
 tags: [isotopes, nuclear-data, reference]
 featured: true
 order: 2
+cover: "/images/simulators/covers/isotope-selfie.png"
 ---
 
 ## What Are Isotopes?
