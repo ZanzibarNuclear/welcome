@@ -7,6 +7,7 @@ description: "Explore steady pipe flow: Reynolds number, Darcy–Weisbach and mi
 tags: [fluids, hydraulics, pressure-drop, reactor-coolant, pipe-flow-series]
 series: "Pipe flow"
 order: 7
+hidden: true
 ---
 
 ## What this models

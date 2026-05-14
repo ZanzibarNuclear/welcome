@@ -58,10 +58,11 @@ difficulty: beginner|intermediate|advanced
 description: "Brief description"
 tags: [tag1, tag2]
 featured: true/false
+hidden: true  # Optional: omit from /simulators index; page still works at /simulators/[slug]
 ```
 
 **Routes:**
-- `/simulators` - Gallery of all simulators grouped by difficulty
+- `/simulators` - Gallery of visible simulators (excludes `hidden: true`)
 - `/simulators/[slug]` - Individual simulator guide page with optional embedded component
 
 **Simulator Components:** Located in `app/components/simulators/`

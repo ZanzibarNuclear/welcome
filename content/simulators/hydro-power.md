@@ -6,6 +6,7 @@ difficulty: beginner
 description: "Estimate hydraulic and electric power from gross head, lumped losses, flow rate, and overall efficiency—simple 1D energy accounting for dams and stations."
 tags: [fluids, hydropower, energy, civil]
 order: 5
+hidden: true
 ---
 
 ## What this models
