@@ -557,7 +557,7 @@ function vesselPulsing(key: CascadeVesselKey): boolean {
     <div class="grid gap-4 md:grid-cols-2">
       <label class="space-y-2 md:col-span-2 mt-4">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Pipe inner diameter</span
+          >Pipe inner diameter D</span
         >
         <select
           v-model="diameterPresetId"
@@ -589,7 +589,7 @@ function vesselPulsing(key: CascadeVesselKey): boolean {
 
       <label class="space-y-2 md:col-span-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Volume flow Q (L/s)</span
+          >Volume flow Q (liters/second)</span
         >
         <div class="flex flex-col gap-0">
           <div class="relative">
@@ -679,7 +679,7 @@ function vesselPulsing(key: CascadeVesselKey): boolean {
           y="22"
           text-anchor="middle"
           class="fill-gray-600 text-[8px] dark:fill-gray-400">
-          L = {{ lengthM }} m (length of this run)
+          {{ lengthM }} m
         </text>
 
         <rect
