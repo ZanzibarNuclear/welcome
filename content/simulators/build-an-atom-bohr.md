@@ -1,6 +1,6 @@
 ---
 type: simulator
-title: "Atom Builder (Bohr)"
+title: "Atom Builder"
 component: "AtomBuilderBohr"
 difficulty: beginner
 description: "This simulator features the Bohr model. See how an element changes as you add protons, neutrons, and electrons."

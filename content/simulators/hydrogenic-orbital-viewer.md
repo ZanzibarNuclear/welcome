@@ -2,7 +2,7 @@
 type: simulator
 title: "Hydrogenic Orbital Viewer"
 component: "HydrogenicOrbitalViewer"
-difficulty: intermediate
+difficulty: advanced
 description: "Explore hydrogen-like orbital lobes and nodal structure in both 2D slices and 3D views, with preset selection and phase coloring."
 tags: [atoms, orbitals, quantum, visualization]
 featured: true

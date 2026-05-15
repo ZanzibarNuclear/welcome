@@ -118,12 +118,12 @@ const reset = () => {
 
 <template>
   <div class="space-y-6">
-    <div class="text-center">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ currentElement }}</h3>
-      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-        <div>Atomic Number: {{ protons }}</div>
-        <div>Mass Number: {{ massNumber }}</div>
-        <div>Charge: {{ charge > 0 ? '+' : '' }}{{ charge }}</div>
+    <div class="mx-auto w-full max-w-2xl space-y-2">
+      <h3 class="text-center text-2xl font-bold text-gray-900 dark:text-white">{{ currentElement }}</h3>
+      <div class="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div class="text-left">Atomic Number: {{ protons }}</div>
+        <div class="text-center">Mass Number: {{ massNumber }}</div>
+        <div class="text-right">Charge: {{ charge > 0 ? '+' : '' }}{{ charge }}</div>
       </div>
     </div>
 
@@ -185,10 +185,20 @@ const reset = () => {
           <div class="text-lg font-semibold text-red-600 dark:text-red-400">Protons</div>
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ protons }}</div>
         </div>
-        <div class="flex gap-2">
-          <UButton :disabled="protons === 0" color="neutral" variant="outline" class="flex-1" @click="removeProton">-
-          </UButton>
-          <UButton color="primary" class="flex-1" @click="addProton">+</UButton>
+        <div class="flex justify-center gap-2">
+          <UButton
+            :disabled="protons === 0"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-white ring-1 ring-gray-400 text-gray-800 shadow-sm dark:bg-gray-900 dark:ring-gray-500 dark:text-gray-100"
+            @click="removeProton">-</UButton>
+          <UButton
+            variant="outline"
+            color="primary"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-primary-50 ring-1 ring-primary-400 text-primary-800 shadow-sm dark:bg-primary-950/50 dark:ring-primary-500 dark:text-primary-200"
+            @click="addProton">+</UButton>
         </div>
       </div>
 
@@ -198,10 +208,20 @@ const reset = () => {
           <div class="text-lg font-semibold text-gray-600 dark:text-gray-400">Neutrons</div>
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ neutrons }}</div>
         </div>
-        <div class="flex gap-2">
-          <UButton :disabled="neutrons === 0" color="neutral" variant="outline" class="flex-1" @click="removeNeutron">-
-          </UButton>
-          <UButton color="primary" class="flex-1" @click="addNeutron">+</UButton>
+        <div class="flex justify-center gap-2">
+          <UButton
+            :disabled="neutrons === 0"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-white ring-1 ring-gray-400 text-gray-800 shadow-sm dark:bg-gray-900 dark:ring-gray-500 dark:text-gray-100"
+            @click="removeNeutron">-</UButton>
+          <UButton
+            variant="outline"
+            color="primary"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-primary-50 ring-1 ring-primary-400 text-primary-800 shadow-sm dark:bg-primary-950/50 dark:ring-primary-500 dark:text-primary-200"
+            @click="addNeutron">+</UButton>
         </div>
       </div>
 
@@ -211,10 +231,20 @@ const reset = () => {
           <div class="text-lg font-semibold text-blue-600 dark:text-blue-400">Electrons</div>
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ electrons }}</div>
         </div>
-        <div class="flex gap-2">
-          <UButton :disabled="electrons === 0" color="neutral" variant="outline" class="flex-1" @click="removeElectron">
-            -</UButton>
-          <UButton color="primary" class="flex-1" @click="addElectron">+</UButton>
+        <div class="flex justify-center gap-2">
+          <UButton
+            :disabled="electrons === 0"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-white ring-1 ring-gray-400 text-gray-800 shadow-sm dark:bg-gray-900 dark:ring-gray-500 dark:text-gray-100"
+            @click="removeElectron">-</UButton>
+          <UButton
+            variant="outline"
+            color="primary"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-primary-50 ring-1 ring-primary-400 text-primary-800 shadow-sm dark:bg-primary-950/50 dark:ring-primary-500 dark:text-primary-200"
+            @click="addElectron">+</UButton>
         </div>
       </div>
     </div>

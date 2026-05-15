@@ -1,8 +1,8 @@
 ---
 type: simulator
-title: "Atom Builder (quantum view)"
+title: "Quantum Atom Builder"
 component: "AtomBuilderQuantum"
-difficulty: beginner
+difficulty: intermediate
 description: "Same controls as the Bohr-model builder, but electrons appear as overlapping probability clouds instead of orbiting points."
 tags: [atoms, elements, interactive, quantum]
 featured: false

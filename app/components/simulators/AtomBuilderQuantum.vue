@@ -42,6 +42,58 @@ const electronShells = computed(() => getElectronShells(protons.value, electrons
 
 const SHELL_INNER = 180
 const SHELL_OUTER = 460
+const NUCLEUS_RADIUS = 34
+const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5))
+
+type Nucleon = {
+  id: number
+  type: 'proton' | 'neutron'
+  x: number
+  y: number
+  z: number
+  size: number
+  opacity: number
+}
+
+const isProtonAtIndex = (index: number, total: number, protonCount: number) => {
+  if (total === 0) return false
+  return ((index * 37) % total) < protonCount
+}
+
+const nucleons = computed<Nucleon[]>(() => {
+  const total = protons.value + neutrons.value
+  if (total === 0) return []
+
+  const particles = Array.from({ length: total }, (_, i) => {
+    const t = (i + 0.5) / total
+    const theta = i * GOLDEN_ANGLE
+    const phi = Math.acos(1 - 2 * t)
+    const radiusFactor = 0.38 + 0.62 * (((i * 53) % 101) / 100)
+
+    const x = radiusFactor * Math.sin(phi) * Math.cos(theta)
+    const y = radiusFactor * Math.sin(phi) * Math.sin(theta)
+    const z = radiusFactor * Math.cos(phi)
+
+    const nucleonType: Nucleon['type'] = isProtonAtIndex(i, total, protons.value) ? 'proton' : 'neutron'
+
+    return {
+      id: i,
+      type: nucleonType,
+      x: x * NUCLEUS_RADIUS,
+      y: y * NUCLEUS_RADIUS,
+      z,
+      size: 8 + (z + 1) * 4,
+      opacity: 0.58 + (z + 1) * 0.18
+    }
+  })
+
+  const meanX = particles.reduce((s, p) => s + p.x, 0) / total
+  const meanY = particles.reduce((s, p) => s + p.y, 0) / total
+
+  return particles
+    .map((p) => ({ ...p, x: p.x - meanX, y: p.y - meanY }))
+    .sort((a, b) => a.z - b.z)
+})
 
 const shellDiameter = (idx: number) => {
   const n = electronShells.value.length
@@ -85,12 +137,12 @@ const reset = () => {
 
 <template>
   <div class="space-y-6">
-    <div class="text-center">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ currentElement }}</h3>
-      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-        <div>Atomic Number: {{ protons }}</div>
-        <div>Mass Number: {{ massNumber }}</div>
-        <div>Charge: {{ charge > 0 ? '+' : '' }}{{ charge }}</div>
+    <div class="mx-auto w-full max-w-2xl space-y-2">
+      <h3 class="text-center text-2xl font-bold text-gray-900 dark:text-white">{{ currentElement }}</h3>
+      <div class="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div class="text-left">Atomic Number: {{ protons }}</div>
+        <div class="text-center">Mass Number: {{ massNumber }}</div>
+        <div class="text-right">Charge: {{ charge > 0 ? '+' : '' }}{{ charge }}</div>
       </div>
     </div>
 
@@ -111,13 +163,31 @@ const reset = () => {
             }" />
         </div>
 
-        <div
-          class="relative z-30 w-32 h-32 rounded-full bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
-          <div class="text-white text-center">
-            <div class="text-xs font-semibold">Nucleus</div>
-            <div class="text-2xl font-bold">{{ protons + neutrons }}</div>
+        <!-- Nucleus -->
+        <div class="relative z-30 w-36 h-36 flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full bg-linear-to-br from-primary-200/60 to-primary-500/50 dark:from-primary-900/40 dark:to-primary-700/45 blur-[1px]" />
+          <div
+            v-for="nucleon in nucleons"
+            :key="nucleon.id"
+            class="absolute rounded-full border shadow-sm"
+            :class="nucleon.type === 'proton'
+              ? 'border-red-300/70 bg-radial-[at_30%_30%] from-red-300 to-red-600 dark:border-red-300/30 dark:from-red-300 dark:to-red-700'
+              : 'border-sky-300/70 bg-radial-[at_30%_30%] from-sky-200 to-sky-600 dark:border-sky-300/30 dark:from-sky-200 dark:to-sky-700'"
+            :style="{
+              width: `${nucleon.size}px`,
+              height: `${nucleon.size}px`,
+              opacity: nucleon.opacity,
+              left: `calc(50% + ${nucleon.x}px)`,
+              top: `calc(50% + ${nucleon.y}px)`,
+              transform: 'translate(-50%, -50%)'
+            }" />
+          <div class="absolute -bottom-7 text-center">
+            <div class="rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">
+              Nucleus: {{ protons + neutrons }}
+            </div>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -131,10 +201,20 @@ const reset = () => {
           <div class="text-lg font-semibold text-red-600 dark:text-red-400">Protons</div>
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ protons }}</div>
         </div>
-        <div class="flex gap-2">
-          <UButton :disabled="protons === 0" color="neutral" variant="outline" class="flex-1" @click="removeProton">-
-          </UButton>
-          <UButton color="primary" class="flex-1" @click="addProton">+</UButton>
+        <div class="flex justify-center gap-2">
+          <UButton
+            :disabled="protons === 0"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-white ring-1 ring-gray-400 text-gray-800 shadow-sm dark:bg-gray-900 dark:ring-gray-500 dark:text-gray-100"
+            @click="removeProton">-</UButton>
+          <UButton
+            variant="outline"
+            color="primary"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-primary-50 ring-1 ring-primary-400 text-primary-800 shadow-sm dark:bg-primary-950/50 dark:ring-primary-500 dark:text-primary-200"
+            @click="addProton">+</UButton>
         </div>
       </div>
 
@@ -143,10 +223,20 @@ const reset = () => {
           <div class="text-lg font-semibold text-gray-600 dark:text-gray-400">Neutrons</div>
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ neutrons }}</div>
         </div>
-        <div class="flex gap-2">
-          <UButton :disabled="neutrons === 0" color="neutral" variant="outline" class="flex-1" @click="removeNeutron">-
-          </UButton>
-          <UButton color="primary" class="flex-1" @click="addNeutron">+</UButton>
+        <div class="flex justify-center gap-2">
+          <UButton
+            :disabled="neutrons === 0"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-white ring-1 ring-gray-400 text-gray-800 shadow-sm dark:bg-gray-900 dark:ring-gray-500 dark:text-gray-100"
+            @click="removeNeutron">-</UButton>
+          <UButton
+            variant="outline"
+            color="primary"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-primary-50 ring-1 ring-primary-400 text-primary-800 shadow-sm dark:bg-primary-950/50 dark:ring-primary-500 dark:text-primary-200"
+            @click="addNeutron">+</UButton>
         </div>
       </div>
 
@@ -155,10 +245,20 @@ const reset = () => {
           <div class="text-lg font-semibold text-blue-600 dark:text-blue-400">Electrons</div>
           <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ electrons }}</div>
         </div>
-        <div class="flex gap-2">
-          <UButton :disabled="electrons === 0" color="neutral" variant="outline" class="flex-1" @click="removeElectron">
-            -</UButton>
-          <UButton color="primary" class="flex-1" @click="addElectron">+</UButton>
+        <div class="flex justify-center gap-2">
+          <UButton
+            :disabled="electrons === 0"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-white ring-1 ring-gray-400 text-gray-800 shadow-sm dark:bg-gray-900 dark:ring-gray-500 dark:text-gray-100"
+            @click="removeElectron">-</UButton>
+          <UButton
+            variant="outline"
+            color="primary"
+            size="sm"
+            class="w-10 justify-center text-lg font-semibold bg-primary-50 ring-1 ring-primary-400 text-primary-800 shadow-sm dark:bg-primary-950/50 dark:ring-primary-500 dark:text-primary-200"
+            @click="addElectron">+</UButton>
         </div>
       </div>
     </div>

@@ -80,16 +80,16 @@ useHead({
               {{ simulator.description ?? "Open this simulator." }}
             </p>
           </div>
+          <img
+            v-if="simulator.cover"
+            :src="simulator.cover"
+            :alt="simulator.title"
+            class="h-44 w-full shrink-0 object-cover" >
           <span
             class="mt-8 font-semibold text-primary-600 dark:text-primary-400">
             Open simulator
           </span>
         </div>
-        <img
-          v-if="simulator.cover"
-          :src="simulator.cover"
-          :alt="simulator.title"
-          class="h-44 w-full shrink-0 object-cover" >
       </NuxtLink>
     </div>
   </div>
