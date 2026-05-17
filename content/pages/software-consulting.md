@@ -1,32 +1,45 @@
 ---
 title: Scientific Software Development
-description: Custom software for science-driven organizations—from modeling and simulation to data pipelines and domain-specific tools.
+description: Custom software for science-based companies. Modeling, simulations, insight applications, domain-specific tools.
 ---
 
 # Science-Driven Software Consulting
 
-While Atomic Ambitions is busy helping the world understand the fundamental of nuclear energy, we are also ready to lend our software expertise to your needs.
+Atomic Ambitions is on a mission to help the world understand the fundamentals of nuclear energy. We also go deeper, providing software expertise to meet the needs of businesses.
 
-The engineers at Atomic Ambitions design and build **custom scientific software**.
+The engineers at Atomic Ambitions design and build **custom scientific software**. Modeling and simulations form the core. Insight applications turn data into knowledge. Every domain needs custom tools that fit a particular brand of science and engineering.
 
-You might want to supplement the developers you have. Or maybe you are relying on your IT staff to customize software, and they got too far out of their comfort zone.
+You might want to supplement the developers you have. Or maybe you rely on your IT staff to customize software.
 
-That is where we come in. We start with a gap analysis. Then develop a plan and timeline that works for you. We keep you in the loop as we go to avoid surprises.
+That is where Atomic Ambitions comes in. We start with a gap analysis, develop a plan and timeline that works for you, and drive AI-accelerated development to build the software you need.
+
+Nimble, quick, mindful. Backed by leading edge scienfic computing.
 
 ## AI-Assisted Development
 
-We know how to get the most out of AI. When it comes to curiosity, intention, and decision-making, humans are still in charge. Trust us to make effective use of AI.
+Atomic Ambitions uses AI as an important tool for working fast while containing costs. For this kind of work, vibe coding is not enough. Coding agents need human guidance about the real world. They also need a steady supply of motivation, a sense of purpose.
+
+Combined with decades of software development experience, Atomic Ambitions engineers leverage AI for:
+
+- Capability to understand legacy code (FORTRAN, C, C++, Perl)
+- New development in any programming language (Python, Typescript, Rust, etc.)
+- Rapid prototyping
+- UI across any platform or device (Web, tablet, mobile)
+- Targeted, iterative feature development
+- Troubleshooting and error correction
+- Effective performance tuning
+- Data analysis
 
 ## What do you need?
 
 Here are a few ideas of software systems we can build for you:
 
-- **Modeling and simulation** — turning your technical requirements into maintainable code, from prototypes to deployed services.
-- **Data and analysis pipelines** — ingestion, processing, and reporting tailored to experimental or operational data.
-- **Domain-specific applications** — internal tools, configurators, and decision support that encode your science and your process.
+- **Modeling and simulation** — Turn your technical requirements into maintainable code, from prototypes to deployed libraries and services.
+- **Data and analysis pipelines** — Ingest and process experimental or operational data. Tailor reports for key insights.
+- **Domain-specific applications** — Internal tools, configurators, and decision support to support your science and engineering processes.
 
-What would you like? We are happy to assemble solutions for your requirements.
+What do you have in mind? Where do you need to level up?
 
 ## Let's Talk
 
-No matter the size and scope of your project, let's connect and discuss what you are looking for. DM [@DaveMountOnX](https://x.com/DaveMountOnX).
+No matter the size and scope of your project, let's connect and discuss what you are looking for. DM [@DaveMountOnX "Dave, Atomic Alchemist"](https://x.com/DaveMountOnX).
